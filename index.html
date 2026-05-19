@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Інфографіка Alter Ego</title>
+
+<!-- Шрифт -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+    body{
+        margin:0;
+        background:#f2f2f2;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:100vh;
+        font-family:'Montserrat', sans-serif;
+    }
+
+    .infographic{
+        position:relative;
+        width:1536px;
+        height:864px;
+
+        /* ВСТАВ СВОЮ КАРТИНКУ */
+        background:url("background.png") no-repeat center center;
+        background-size:cover;
+
+        overflow:hidden;
+    }
+
+    .text{
+        position:absolute;
+        color:#000;
+        text-align:center;
+        line-height:1.05;
+    }
+
+    .title{
+        font-size:58px;
+        font-weight:800;
+        width:1100px;
+        left:55px;
+        top:32px;
+        text-align:left;
+    }
+
+    /* ГОЛОВНІ БЛОКИ */
+
+    .big-number{
+        font-size:88px;
+        font-weight:800;
+    }
+
+    .big-label{
+        font-size:28px;
+        font-weight:700;
+    }
+
+    .small-label{
+        font-size:18px;
+        font-weight:500;
+        line-height:1.25;
+    }
+
+    /* ЛІВЕ КОЛО */
+
+    .missions{
+        left:165px;
+        top:240px;
+        width:280px;
+    }
+
+    /* ЦЕНТР */
+
+    .distance{
+        left:620px;
+        top:250px;
+        width:300px;
+    }
+
+    /* ПРАВЕ КОЛО */
+
+    .cargo{
+        left:1125px;
+        top:240px;
+        width:300px;
+    }
+
+    /* НИЖНІ ЗАГОЛОВКИ */
+
+    .section-title{
+        font-size:28px;
+        font-weight:800;
+        text-align:left;
+    }
+
+    .left-section{
+        left:55px;
+        top:540px;
+    }
+
+    .right-section{
+        left:740px;
+        top:540px;
+    }
+
+    /* ЕВАКУАЦІЯ */
+
+    .evac1{
+        left:170px;
+        top:650px;
+        width:240px;
+        text-align:left;
+    }
+
+    .evac2{
+        left:170px;
+        top:770px;
+        width:260px;
+        text-align:left;
+    }
+
+    .ops{
+        left:520px;
+        top:660px;
+        width:220px;
+        text-align:left;
+    }
+
+    .mini-number{
+        font-size:58px;
+        font-weight:800;
+    }
+
+    .mini-label{
+        font-size:20px;
+        font-weight:700;
+    }
+
+    .mini-desc{
+        font-size:16px;
+        font-weight:500;
+        line-height:1.2;
+        margin-top:8px;
+    }
+
+    /* ПІДРОЗДІЛИ */
+
+    .unit{
+        position:absolute;
+        width:250px;
+        color:#000;
+    }
+
+    .unit-name{
+        font-size:18px;
+        font-weight:700;
+        color:#fff;
+    }
+
+    .unit-title{
+        font-size:22px;
+        font-weight:800;
+        margin-top:12px;
+    }
+
+    .unit-stats{
+        margin-top:14px;
+        font-size:18px;
+        font-weight:600;
+        line-height:1.45;
+    }
+
+    .unit1{
+        left:800px;
+        top:635px;
+    }
+
+    .unit2{
+        left:1090px;
+        top:635px;
+    }
+
+    .unit3{
+        left:1370px;
+        top:635px;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="infographic">
+
+    <!-- ЗАГОЛОВОК -->
+
+    <div class="text title">
+        Результати бойової роботи ББНК «Alter Ego» (93 ОМБр)<br>
+        за квітень 2026 року
+    </div>
+
+    <!-- ЛІВИЙ БЛОК -->
+
+    <div class="text missions">
+        <div class="big-number">258</div>
+
+        <div class="big-label">
+            бойових місій
+        </div>
+
+        <div class="small-label">
+            Загальна кількість виїздів<br>
+            усіх підрозділів за місяць
+        </div>
+    </div>
+
+    <!-- ЦЕНТР -->
+
+    <div class="text distance">
+        <div class="big-number">4 324</div>
+
+        <div class="big-label">
+            кілометри<br>
+            пройденої відстані
+        </div>
+
+        <div class="small-label">
+            Сумарна дистанція, яку подолали<br>
+            безпілотні наземні комплекси
+        </div>
+    </div>
+
+    <!-- ПРАВИЙ БЛОК -->
+
+    <div class="text cargo">
+        <div class="big-number">21 272</div>
+
+        <div class="big-label">
+            кг перевезеного<br>
+            вантажу
+        </div>
+
+        <div class="small-label">
+            Понад 21 тонна боєприпасів,<br>
+            провізії та іншого майна
+        </div>
+    </div>
+
+    <!-- НИЖНІ ЗАГОЛОВКИ -->
+
+    <div class="text section-title left-section">
+        Евакуація та спеціальні операції
+    </div>
+
+    <div class="text section-title right-section">
+        Розподіл результатів за підрозділами
+    </div>
+
+    <!-- ЕВАКУАЦІЯ -->
+
+    <div class="text evac1">
+        <span class="mini-number">10</span>
+        <span class="mini-label"> евакуацій<br>особового складу</span>
+
+        <div class="mini-desc">
+            4 поранених (300-ті)<br>
+            6 загиблих (200-ті)
+        </div>
+    </div>
+
+    <div class="text evac2">
+        <span class="mini-number">18</span>
+        <span class="mini-label"> евакуацій<br>НРК</span>
+
+        <div class="mini-desc">
+            Кількість операцій з порятунку<br>
+            та вивезення пошкоджених комплексів
+        </div>
+    </div>
+
+    <div class="text ops">
+        <span class="mini-number">1</span>
+        <span class="mini-label"> ударна<br>місія</span>
+
+        <br><br>
+
+        <span class="mini-number">1</span>
+        <span class="mini-label"> інженерна<br>операція</span>
+    </div>
+
+    <!-- ПІДРОЗДІЛИ -->
+
+    <div class="unit unit1">
+        <div class="unit-title">Рота «СТАЛКЕР»</div>
+
+        <div class="unit-stats">
+            Місії: 103<br>
+            Відстань: 1739.5 км<br>
+            Вага: 7 020 кг
+        </div>
+    </div>
+
+    <div class="unit unit2">
+        <div class="unit-title">Рота «BLACK NAVI»</div>
+
+        <div class="unit-stats">
+            Місії: 68<br>
+            Відстань: 1249.0 км<br>
+            Вага: 5 192 кг
+        </div>
+    </div>
+
+    <div class="unit unit3">
+        <div class="unit-title">Рота «ВЕДМЕДІ»</div>
+
+        <div class="unit-stats">
+            Місії: 87<br>
+            Відстань: 1335.5 км<br>
+            Вага: 9 060 кг
+        </div>
+    </div>
+
+</div>
+
+</body>
+  </html>
