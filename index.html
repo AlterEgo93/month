@@ -294,9 +294,11 @@
         </div>
 
         <div class="small-label">
-            Понад 21 тонна боєприпасів,<br>
+            Понад <span id="weight-tons"></span> боєприпасів,<br>
             провізії та іншого майна
         </div>
+        
+
 
     </div>
 
@@ -551,6 +553,9 @@
         document.getElementById('total-weight')
             .textContent = formatNumber(data.total_weight);
 
+        document.getElementById('weight-tons')
+            .textContent = formatTons(data.total_weight);
+
 
         // ЕВАКУАЦІЯ
 
@@ -590,6 +595,21 @@
 
             document.getElementById(id)
                 .style.width = percent + '%';
+        }
+
+        function formatTons(kg){
+
+    const tons = Math.floor(kg / 1000);
+
+    if(tons === 1){
+        return '1 тонну';
+    }
+
+    if(tons >= 2 && tons <= 4){
+        return tons + ' тонни';
+    }
+
+    return tons + ' тонн';
         }
 
 
