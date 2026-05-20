@@ -390,7 +390,8 @@
 
             <span id="stalker-distance"></span><br>
             <span id="stalker-weight"></span><br>
-            <span id="stalker-evac"></span>
+            <span id="stalker-evac_300"></span>
+            <span id="stalker-evac_nrk"></span>
 
         </div>
 
@@ -418,7 +419,8 @@
 
             <span id="black-distance"></span><br>
             <span id="black-weight"></span><br>
-            <span id="black-evac"></span>
+            <span id="black-evac_300"></span>
+            <span id="black-evac_nrk"></span>
 
         </div>
 
@@ -446,7 +448,8 @@
 
             <span id="bears-distance"></span><br>
             <span id="bears-weight"></span><br>
-            <span id="bears-evac"></span>
+            <span id="bears-evac_300"></span>
+            <span id="bears-evac_nrk"></span>
 
         </div>
 
@@ -460,7 +463,7 @@
     // ВСТАВ СЮДИ СВІЙ CSV URL GOOGLE TABLES
 
     const SHEET_URL =
-    'https://docs.google.com/spreadsheets/d/e/XXXXXXXX/pub?output=csv';
+    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMw6H2nTGjSr4xbZNjl67tncfknalcb-RT7fBLfmJna7qwEkwxh49XHC3AgDEpWHG7IdnuflyXXnWE/pub?gid=825422948&single=true&output=csv';
 
 
     // ФОРМАТ ЧИСЕЛ
@@ -611,9 +614,13 @@
             .textContent =
             'Вага: ' + formatNumber(data.stalker_weight) + ' кг';
 
-        document.getElementById('stalker-evac')
+        document.getElementById('stalker-evac_300')
             .textContent =
-            'Евакуація НРК: ' + formatNumber(data.stalker_evac);
+            'Евакуація (300/200): ' + formatNumber(data.stalker_evac_300)+' / '+formatNumber(data.stalker_evac_200);
+
+        document.getElementById('stalker-evac_nrk')
+            .textContent =
+            'Евакуація НРК: ' + formatNumber(data.stalker_evac_nrk);
 
 
         // BLACK NAVI
@@ -630,9 +637,13 @@
             .textContent =
             'Вага: ' + formatNumber(data.black_weight) + ' кг';
 
-        document.getElementById('black-evac')
+        document.getElementById('black-evac_300')
             .textContent =
-            'Евакуація НРК: ' + formatNumber(data.black_evac);
+            'Евакуація (300/200): ' + formatNumber(data.black_evac_300)+' / '+formatNumber(data.black_evac_200);
+
+        document.getElementById('black-evac_nrk')
+            .textContent =
+            'Евакуація НРК: ' + formatNumber(data.black_evac_nrk);
 
 
         // ВЕДМЕДІ
@@ -649,9 +660,17 @@
             .textContent =
             'Вага: ' + formatNumber(data.bears_weight) + ' кг';
 
-        document.getElementById('bears-evac')
+        document.getElementById('bears-evac_300')
             .textContent =
-            'Евакуація НРК: ' + formatNumber(data.bears_evac);
+            'Евакуація (300/200): ' + formatNumber(data.bears_evac_300)+' / '+formatNumber(data.bears_evac_300);
+
+        document.getElementById('bears-evac_200')
+            .textContent =
+            'Евакуація НРК: ' + formatNumber(data.bears_evac_200);
+
+        document.getElementById('bears-evac_nrk')
+            .textContent =
+            'Евакуація НРК: ' + formatNumber(data.bears_evac_nrk);
 
     }
 
