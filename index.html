@@ -188,6 +188,30 @@
         font-size:18px;
         font-weight:600;
         line-height:1.45;
+        position:relative;
+    }
+
+    .stat-row{
+        margin-bottom:12px;
+    }
+
+    .progress{
+        width:220px;
+        height:12px;
+        background:#d9e4ef;
+        border-radius:999px;
+        overflow:hidden;
+        margin-top:4px;
+    }
+
+    .fill{
+        height:100%;
+        background:linear-gradient(
+            90deg,
+            #1f4f82 0%,
+            #3d73ab 100%
+        );
+        border-radius:999px;
     }
 
     .unit1{
@@ -322,10 +346,15 @@
         <div class="unit-title">Рота <br> «СТАЛКЕР»</div>
 
         <div class="unit-stats">
-            Місії: 103<br>
+            <div class="stat-row">
+                <span>Місії: 103</span>
+                <div class="progress">
+                    <div class="fill" style="width:100%"></div>
+                </div>
+            </div>
             Відстань: 1 739 км<br>
             Вага: 7 020 кг
-        </div>
+            </div>       
     </div>
 
     <div class="unit unit2">
