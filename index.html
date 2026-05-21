@@ -10,11 +10,18 @@
 
 <style>
 
+    html, body{
+    overflow-x:auto;
+    }
+
     body{
-    margin:0;
-    background:#f2f2f2;
-    overflow:auto;
-    font-family:'Montserrat', sans-serif;
+        margin:0;
+        background:#f2f2f2;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:100vh;
+        font-family:'Montserrat', sans-serif;
     }
 
     .infographic{
@@ -26,18 +33,8 @@
         background-size:cover;
 
         overflow:hidden;
-    }
 
-    .scale-wrapper{
-
-    width:100vw;
-    height:100vh;
-
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-
-    overflow:auto;
+        min-width:1536px;
     }
 
     .text{
@@ -246,8 +243,6 @@
 </head>
 
 <body>
-
-<div class="scale-wrapper">
 
 <div class="infographic">
 
@@ -704,44 +699,7 @@
 
     loadData();
 
-
-function scaleInfographic(){
-
-    const baseWidth = 1536;
-    const baseHeight = 864;
-
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
-
-    const scaleX = screenWidth / baseWidth;
-    const scaleY = screenHeight / baseHeight;
-
-    const scale = Math.min(scaleX, scaleY);
-
-    const infographic =
-        document.querySelector('.infographic');
-
-    infographic.style.transform =
-        `scale(${scale})`;
-
-    infographic.style.transformOrigin =
-        'top center';
-
-    // компенсація висоти
-
-    infographic.parentElement.style.height =
-        (baseHeight * scale) + 'px';
-}
-
-scaleInfographic();
-
-window.addEventListener(
-    'resize',
-    scaleInfographic
-);    
-
-    
 </script>
-</div>
+
 </body>
-</html>
+                </html>
