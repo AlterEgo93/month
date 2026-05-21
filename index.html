@@ -260,7 +260,7 @@
         top:70.60%;
     }
 
-    #saveBtn{
+#saveBtn{
 
     position:fixed;
 
@@ -281,7 +281,7 @@
 
     padding:14px 22px;
 
-    border-radius:16px;
+    border-radius:18px;
 
     font-size:16px;
     font-weight:700;
@@ -291,11 +291,15 @@
     cursor:pointer;
 
     box-shadow:
-        0 4px 12px rgba(0,0,0,0.2);
+        0 6px 20px rgba(0,0,0,0.25);
 
     transition:
         transform 0.15s,
         opacity 0.15s;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
 #saveBtn:hover{
@@ -306,20 +310,54 @@
     transform:scale(0.98);
 }
 
+/* ПУЛЬСАЦІЯ */
+
+@keyframes pulse{
+
+    0%{
+        box-shadow:
+            0 0 0 0 rgba(45,93,147,0.5);
+    }
+
+    70%{
+        box-shadow:
+            0 0 0 14px rgba(45,93,147,0);
+    }
+
+    100%{
+        box-shadow:
+            0 0 0 0 rgba(45,93,147,0);
+    }
+}
+
+#saveBtn{
+    animation:pulse 2.2s infinite;
+}
+
+/* МОБІЛКА */
+
 @media (max-width:768px){
 
     #saveBtn{
 
-        right:12px;
-        bottom:12px;
+        right:14px;
 
-        padding:10px 16px;
+        bottom:
+        calc(14px + env(safe-area-inset-bottom));
 
-        font-size:13px;
+        padding:14px 18px;
 
-        border-radius:12px;
+        font-size:15px;
+
+        border-radius:16px;
+
+        min-height:54px;
+
+        font-weight:800;
     }
 }
+
+
 
 </style>
 </head>
