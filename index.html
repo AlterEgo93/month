@@ -197,7 +197,7 @@
 
 .unit-stats {
     position: absolute; /* Змінено: з relative на absolute */
-    top: 60%; /* Змінено: стабільний відступ у відсотках замість 1.8em */
+    top: 70%; /* Змінено: стабільний відступ у відсотках замість 1.8em */
     left: 0;
     margin-left: -33%;
     font-size: clamp(5px, 0.8vw, 18px); /* Змінено: знижено мінімум */
@@ -207,24 +207,25 @@
 }
 
 
-.progress{
-
-    margin-left:0.4em;
-
-    width:50%;
-
-    height:0.65em;
-
-    min-height:6px;
-
-    background:#d9e4ef;
-
-    border-radius:999px;
-
-    overflow:hidden;
-
-    flex-shrink:0;
+/* Додайте це правило для ідеального центрування тексту та бару */
+.unit-stats .flex {
+    line-height: 1; 
+    margin-bottom: 0.4em; /* Компенсуємо відступ до наступного рядка */
 }
+
+/* Оновіть ваш клас .progress */
+.progress {
+    margin-left: 0.4em;
+    width: 50%;
+    height: 0.7em; 
+    /* min-height: 6px; — Обов'язково видаліть цей рядок, щоб бар масштабувався на телефонах */
+    background: #d9e4ef;
+    border-radius: 999px;
+    overflow: hidden;
+    flex-shrink: 0;
+    transform: translateY(-0.05em); /* Легке підняття для компенсації базової лінії шрифту */
+}
+    
 
 .fill{
 
