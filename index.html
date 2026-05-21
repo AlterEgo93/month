@@ -264,8 +264,15 @@
 
     position:fixed;
 
-    right:20px;
-    bottom:20px;
+    right:max(
+        12px,
+        env(safe-area-inset-right)
+    );
+
+    bottom:max(
+        12px,
+        env(safe-area-inset-bottom)
+    );
 
     z-index:9999;
 
@@ -279,27 +286,37 @@
 
     color:#fff;
 
-    padding:14px 22px;
+    padding:
+        clamp(10px, 1vw, 16px)
+        clamp(14px, 1.4vw, 24px);
 
     border-radius:18px;
 
-    font-size:16px;
-    font-weight:700;
+    font-size:clamp(13px, 0.9vw, 18px);
+
+    font-weight:800;
 
     font-family:'Montserrat', sans-serif;
 
     cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
 
     box-shadow:
         0 6px 20px rgba(0,0,0,0.25);
 
     transition:
         transform 0.15s,
-        opacity 0.15s;
+        opacity 0.15s,
+        bottom 0.25s;
 
-    display:flex;
-    align-items:center;
-    gap:10px;
+    max-width:42vw;
+
+    backdrop-filter:blur(4px);
+
+    animation:pulse 2.2s infinite;
 }
 
 #saveBtn:hover{
@@ -307,9 +324,19 @@
 }
 
 #saveBtn:active{
-    transform:scale(0.98);
+    transform:scale(0.97);
 }
 
+
+#saveBtn.below-image{
+
+    position:absolute;
+
+    right:20px;
+
+    bottom:-80px;
+}
+    
 /* ПУЛЬСАЦІЯ */
 
 @keyframes pulse{
@@ -357,15 +384,26 @@
     }
 }
 
+.infographic-wrapper{
 
+    position:relative;
+
+    width:100vw;
+
+    max-width:1536px;
+
+    margin:auto;
+}
 
 </style>
 </head>
 
 <body>
 
-<div class="infographic">
+<div class="infographic-wrapper">
 
+    <div class="infographic">
+        
     <button id="saveBtn">
     Зберегти PNG
     </button>
@@ -719,7 +757,38 @@
     loadData();
                         
     
+function updateSaveButton(){
 
+    const button =
+        document.getElementById('saveBtn');
+
+    const infographic =
+        document.querySelector('.infographic');
+
+    const rect =
+        infographic.getBoundingClientRect();
+
+    const viewportHeight =
+        window.innerHeight;
+
+    // якщо вся інфографіка влазить
+
+    if(rect.height < viewportHeight - 120){
+
+        button.classList.add('below-image');
+
+    }else{
+
+        button.classList.remove('below-image');
+    }
+}
+
+updateSaveButton();
+
+window.addEventListener(
+    'resize',
+    updateSaveButton
+);
     
 
     document
@@ -767,6 +836,6 @@ async function savePNG(){
 </script>
 
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    
+</div>   
 </body>
                 </html>
