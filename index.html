@@ -262,19 +262,20 @@
 
 #saveBtn{
 
-    position:fixed;
+    position:sticky;
 
-    right:max(
-        12px,
-        env(safe-area-inset-right)
-    );
+    left:100%;
 
-    bottom:max(
-        12px,
-        env(safe-area-inset-bottom)
-    );
+    margin-left:auto;
 
-    z-index:9999;
+    bottom:16px;
+
+    z-index:999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
 
     border:none;
 
@@ -286,55 +287,47 @@
 
     color:#fff;
 
+    font-family:'Montserrat', sans-serif;
+
+    font-weight:800;
+
+    font-size:clamp(12px, 1.1vw, 18px);
+
     padding:
         clamp(10px, 1vw, 16px)
         clamp(14px, 1.4vw, 24px);
 
     border-radius:18px;
 
-    font-size:clamp(13px, 0.9vw, 18px);
-
-    font-weight:800;
-
-    font-family:'Montserrat', sans-serif;
-
     cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    gap:10px;
 
     box-shadow:
         0 6px 20px rgba(0,0,0,0.25);
 
     transition:
         transform 0.15s,
-        opacity 0.15s,
-        bottom 0.25s;
+        opacity 0.15s;
 
-    max-width:42vw;
+    width:fit-content;
 
-    backdrop-filter:blur(4px);
+    max-width:min(72vw, 260px);
+
+    min-height:48px;
+
+    margin-top:12px;
+    margin-bottom:12px;
+
+    margin-right:12px;
 
     animation:pulse 2.2s infinite;
 }
 
 #saveBtn:hover{
-    transform:scale(1.04);
+    transform:scale(1.03);
 }
 
 #saveBtn:active{
     transform:scale(0.97);
-}
-
-
-#saveBtn.below-image{
-
-    position:absolute;
-
-    right:20px;
-
-    bottom:-80px;
 }
     
 /* ПУЛЬСАЦІЯ */
@@ -393,9 +386,7 @@
 
     <div class="infographic">
         
-    <button id="saveBtn">
-    Зберегти PNG
-    </button>
+
 
     <!-- ЗАГОЛОВОК -->
 
@@ -615,8 +606,13 @@
     </div>
 
 </div>
-
-
+    
+    <button id="saveBtn">
+    Зберегти PNG
+    </button>
+    
+</div>
+    
 <script>
     // ВСТАВ СЮДИ СВІЙ CSV URL GOOGLE TABLES
     const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMw6H2nTGjSr4xbZNjl67tncfknalcb-RT7fBLfmJna7qwEkwxh49XHC3AgDEpWHG7IdnuflyXXnWE/pub?gid=825422948&single=true&output=csv';
@@ -746,38 +742,7 @@
     loadData();
                         
     
-function updateSaveButton(){
 
-    const button =
-        document.getElementById('saveBtn');
-
-    const infographic =
-        document.querySelector('.infographic');
-
-    const rect =
-        infographic.getBoundingClientRect();
-
-    const viewportHeight =
-        window.innerHeight;
-
-    // якщо вся інфографіка влазить
-
-    if(rect.height < viewportHeight - 120){
-
-        button.classList.add('below-image');
-
-    }else{
-
-        button.classList.remove('below-image');
-    }
-}
-
-updateSaveButton();
-
-window.addEventListener(
-    'resize',
-    updateSaveButton
-);
     
 
     document
@@ -825,6 +790,6 @@ async function savePNG(){
 </script>
 
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-</div>   
+
 </body>
                 </html>
