@@ -2,7 +2,7 @@ name: Update Dashboard Data
 
 on:
   schedule:
-    - cron: '*/15 * * * *' # Запуск кожні 15 хвилин
+    - cron: '*/1 * * * *' # Запуск кожні 15 хвилин
   workflow_dispatch: # Дозволяє запустити скрипт вручну кнопкою з інтерфейсу
 
 jobs:
