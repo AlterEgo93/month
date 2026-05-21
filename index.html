@@ -553,239 +553,136 @@
 
 
 <script>
-
     // ВСТАВ СЮДИ СВІЙ CSV URL GOOGLE TABLES
-
-    const SHEET_URL =
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMw6H2nTGjSr4xbZNjl67tncfknalcb-RT7fBLfmJna7qwEkwxh49XHC3AgDEpWHG7IdnuflyXXnWE/pub?gid=825422948&single=true&output=csv';
-
+    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMw6H2nTGjSr4xbZNjl67tncfknalcb-RT7fBLfmJna7qwEkwxh49XHC3AgDEpWHG7IdnuflyXXnWE/pub?gid=825422948&single=true&output=csv';
 
     // ФОРМАТ ЧИСЕЛ
-
     function formatNumber(num){
-
-        return new Intl.NumberFormat('uk-UA')
-            .format(num)
-            .replace(/,/g, ' ');
+        return new Intl.NumberFormat('uk-UA').format(num || 0).replace(/,/g, ' ');
     }
 
-
     // МІСЯЦЬ ЗВІТУ
-
     function getReportMonth(){
-
-        const months = [
-            'січень',
-            'лютий',
-            'березень',
-            'квітень',
-            'травень',
-            'червень',
-            'липень',
-            'серпень',
-            'вересень',
-            'жовтень',
-            'листопад',
-            'грудень'
-        ];
-
+        const months = ['січень', 'лютий', 'березень', 'квітень', 'травень', 'червень', 'липень', 'серпень', 'вересень', 'жовтень', 'листопад', 'грудень'];
         const now = new Date();
-
         let month = now.getMonth();
         let year = now.getFullYear();
 
-        // ДО 5 ЧИСЛА — МИНУЛИЙ МІСЯЦЬ
-
         if(now.getDate() <= 5){
-
             month--;
-
             if(month < 0){
                 month = 11;
                 year--;
             }
         }
-
         return `${months[month]} ${year} року`;
     }
 
     function formatTons(kg){
-
-    const tons = Math.floor(kg / 1000);
-
-    if(tons === 1){
-        return '1 тонну';
+        const tons = Math.floor((kg || 0) / 1000);
+        if(tons === 1) return '1 тонну';
+        if(tons >= 2 && tons <= 4) return tons + ' тонни';
+        return tons + ' тонн';
     }
 
-    if(tons >= 2 && tons <= 4){
-        return tons + ' тонни';
-    }
-
-    return tons + ' тонн';
-        }
-
-    async function loadData(){
-
-        const response = await fetch(SHEET_URL);
-
-        const csv = await response.text();
-
-        const rows = csv.split('\n');
-
-        const data = {};
-
-        rows.slice(1).forEach(row => {
-
-            const [key, value] = row.split(',');
-
-            data[key.trim()] = Number(value);
-        });
-
-
-        // МІСЯЦЬ
-
-        document.getElementById('report-month')
-            .textContent = getReportMonth();
-
+    // ФУНКЦІЯ, ЯКА РОЗКИДАЄ ДАНІ ПО СТОРІНЦІ
+    function renderData(data) {
+        document.getElementById('report-month').textContent = getReportMonth();
 
         // ГОЛОВНІ ЦИФРИ
-
-        document.getElementById('total-missions')
-            .textContent = formatNumber(data.total_missions);
-
-        document.getElementById('total-distance')
-            .textContent = formatNumber(data.total_distance);
-
-        document.getElementById('total-weight')
-            .textContent = formatNumber(data.total_weight);
-
-        document.getElementById('weight-tons')
-            .textContent = formatTons(data.total_weight);
-
+        document.getElementById('total-missions').textContent = formatNumber(data.total_missions);
+        document.getElementById('total-distance').textContent = formatNumber(data.total_distance);
+        document.getElementById('total-weight').textContent = formatNumber(data.total_weight);
+        document.getElementById('weight-tons').textContent = formatTons(data.total_weight);
 
         // ЕВАКУАЦІЯ
-
-        document.getElementById('evac-people')
-            .textContent = formatNumber(data.evac_people);
-
-        document.getElementById('evac-300')
-            .textContent = formatNumber(data.evac_300);
-
-        document.getElementById('evac-200')
-            .textContent = formatNumber(data.evac_200);
-
-        document.getElementById('evac-nrk')
-            .textContent = formatNumber(data.evac_nrk);
-
-        document.getElementById('strike-ops')
-            .textContent = formatNumber(data.strike_ops);
-
-        document.getElementById('engineer-ops')
-            .textContent = formatNumber(data.engineer_ops);
-
+        document.getElementById('evac-people').textContent = formatNumber(data.evac_people);
+        document.getElementById('evac-300').textContent = formatNumber(data.evac_300);
+        document.getElementById('evac-200').textContent = formatNumber(data.evac_200);
+        document.getElementById('evac-nrk').textContent = formatNumber(data.evac_nrk);
+        document.getElementById('strike-ops').textContent = formatNumber(data.strike_ops);
+        document.getElementById('engineer-ops').textContent = formatNumber(data.engineer_ops);
 
         // МАКСИМАЛЬНА КІЛЬКІСТЬ МІСІЙ
-
         const maxMissions = Math.max(
-            data.stalker_missions,
-            data.black_missions,
-            data.bears_missions
+            data.stalker_missions || 0,
+            data.black_missions || 0,
+            data.bears_missions || 0
         );
 
-
-        // ФУНКЦІЯ ПРОГРЕС БАРА
-
         function setBar(id, value){
-
-            const percent = (value / maxMissions) * 100;
-
-            document.getElementById(id)
-                .style.width = percent + '%';
+            const percent = maxMissions > 0 ? (value / maxMissions) * 100 : 0;
+            document.getElementById(id).style.width = percent + '%';
         }
 
-
-
-
         // ПРОГРЕС БАРИ
-
         setBar('stalker-bar', data.stalker_missions);
         setBar('black-bar', data.black_missions);
         setBar('bears-bar', data.bears_missions);
 
-
         // STALKER
-
-        document.getElementById('stalker-missions-text')
-            .textContent =
-            'Місії: ' + formatNumber(data.stalker_missions);
-
-        document.getElementById('stalker-distance')
-            .textContent =
-            'Відстань: ' + formatNumber(data.stalker_distance) + ' км';
-
-        document.getElementById('stalker-weight')
-            .textContent =
-            'Вага: ' + formatNumber(data.stalker_weight) + ' кг';
-
-        document.getElementById('stalker-evac_300')
-            .textContent =
-            'Евакуація (300/200): ' + formatNumber(data.stalker_evac_300)+' / '+formatNumber(data.stalker_evac_200);
-
-        document.getElementById('stalker-evac_nrk')
-            .textContent =
-            'Евакуація НРК: ' + formatNumber(data.stalker_evac_nrk);
-
+        document.getElementById('stalker-missions-text').textContent = 'Місії: ' + formatNumber(data.stalker_missions);
+        document.getElementById('stalker-distance').textContent = 'Відстань: ' + formatNumber(data.stalker_distance) + ' км';
+        document.getElementById('stalker-weight').textContent = 'Вага: ' + formatNumber(data.stalker_weight) + ' кг';
+        document.getElementById('stalker-evac_300').textContent = 'Евакуація (300/200): ' + formatNumber(data.stalker_evac_300) + ' / ' + formatNumber(data.stalker_evac_200);
+        document.getElementById('stalker-evac_nrk').textContent = 'Евакуація НРК: ' + formatNumber(data.stalker_evac_nrk);
 
         // BLACK NAVI
-
-        document.getElementById('black-missions-text')
-            .textContent =
-            'Місії: ' + formatNumber(data.black_missions);
-
-        document.getElementById('black-distance')
-            .textContent =
-            'Відстань: ' + formatNumber(data.black_distance) + ' км';
-
-        document.getElementById('black-weight')
-            .textContent =
-            'Вага: ' + formatNumber(data.black_weight) + ' кг';
-
-        document.getElementById('black-evac_300')
-            .textContent =
-            'Евакуація (300/200): ' + formatNumber(data.black_evac_300)+' / '+formatNumber(data.black_evac_200);
-
-        document.getElementById('black-evac_nrk')
-            .textContent =
-            'Евакуація НРК: ' + formatNumber(data.black_evac_nrk);
-
+        document.getElementById('black-missions-text').textContent = 'Місії: ' + formatNumber(data.black_missions);
+        document.getElementById('black-distance').textContent = 'Відстань: ' + formatNumber(data.black_distance) + ' км';
+        document.getElementById('black-weight').textContent = 'Вага: ' + formatNumber(data.black_weight) + ' кг';
+        document.getElementById('black-evac_300').textContent = 'Евакуація (300/200): ' + formatNumber(data.black_evac_300) + ' / ' + formatNumber(data.black_evac_200);
+        document.getElementById('black-evac_nrk').textContent = 'Евакуація НРК: ' + formatNumber(data.black_evac_nrk);
 
         // ВЕДМЕДІ
-
-        document.getElementById('bears-missions-text')
-            .textContent =
-            'Місії: ' + formatNumber(data.bears_missions);
-
-        document.getElementById('bears-distance')
-            .textContent =
-            'Відстань: ' + formatNumber(data.bears_distance) + ' км';
-
-        document.getElementById('bears-weight')
-            .textContent =
-            'Вага: ' + formatNumber(data.bears_weight) + ' кг';
-
-        document.getElementById('bears-evac_300')
-            .textContent =
-            'Евакуація (300/200): ' + formatNumber(data.bears_evac_300)+' / '+formatNumber(data.bears_evac_200);
-
-        document.getElementById('bears-evac_nrk')
-            .textContent =
-            'Евакуація НРК: ' + formatNumber(data.bears_evac_nrk);
-
+        document.getElementById('bears-missions-text').textContent = 'Місії: ' + formatNumber(data.bears_missions);
+        document.getElementById('bears-distance').textContent = 'Відстань: ' + formatNumber(data.bears_distance) + ' км';
+        document.getElementById('bears-weight').textContent = 'Вага: ' + formatNumber(data.bears_weight) + ' кг';
+        document.getElementById('bears-evac_300').textContent = 'Евакуація (300/200): ' + formatNumber(data.bears_evac_300) + ' / ' + formatNumber(data.bears_evac_200);
+        document.getElementById('bears-evac_nrk').textContent = 'Евакуація НРК: ' + formatNumber(data.bears_evac_nrk);
     }
 
+    async function loadData(){
+        // КРОК 1: Миттєво вантажимо збережений data.json (якщо він є)
+        try {
+            const jsonResponse = await fetch('data.json?t=' + new Date().getTime()); // Додано параметр, щоб браузер не кешував старий файл
+            if(jsonResponse.ok) {
+                const jsonData = await jsonResponse.json();
+                renderData(jsonData); // Відмальовуємо миттєво
+            }
+        } catch (e) {
+            console.warn("Локальний data.json ще не створено або недоступний, чекаємо Google...");
+        }
+
+        // КРОК 2: Фоново тягнемо найсвіжіші дані з Google Sheets
+        try {
+            const response = await fetch(SHEET_URL);
+            const csv = await response.text();
+            
+            // Захист від пустих рядків у кінці файлу (trim)
+            const rows = csv.trim().split('\n');
+            const data = {};
+
+            rows.slice(1).forEach(row => {
+                const parts = row.split(',');
+                if(parts.length >= 2) {
+                    const key = parts[0].trim();
+                    const value = parts[1].trim();
+                    data[key] = Number(value);
+                }
+            });
+
+            renderData(data); // Перемальовуємо сторінку свіжими даними
+        } catch (error) {
+            console.error("Помилка фонового оновлення з Google Sheets:", error);
+        }
+    }
 
     loadData();
+                        
+    
 
+    
 
     document
     .getElementById('saveBtn')
