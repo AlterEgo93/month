@@ -170,53 +170,42 @@
     }
 
     /* ПІДРОЗДІЛИ */
-.unit{
-    position:absolute;
-
-    width:16.27%;
-
-    color:#000;
+/* ПІДРОЗДІЛИ */
+.unit {
+    position: absolute;
+    width: 16.27%;
+    height: 22%; /* Додано: фіксована висота для стабільного розрахунку відсотків */
+    color: #000;
 }
 
-.unit-title{
-
-    font-size:clamp(10px, 1.2vw, 22px);
-
-    font-weight:700;
-
-    letter-spacing:-0.03em;
-
-    display:inline-block;
-
-    background:#2d5d93;
-
-    color:#fff;
-
-    padding:0.45em 0.65em;
-
-    border-radius:0.7em;
-
-    box-shadow:0 2px 6px rgba(0,0,0,0.15);
-
-    line-height:1.05;
+.unit-title {
+    position: absolute; /* Додано: відв'язуємо від стандартного потоку */
+    top: 0;
+    left: 0;
+    font-size: clamp(6px, 1.2vw, 22px); /* Змінено: знижено мінімум для уникнення накладання на мобільних */
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    display: inline-block;
+    background: #2d5d93;
+    color: #fff;
+    padding: 0.45em 0.65em;
+    border-radius: 0.7em;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    line-height: 1.05;
+    z-index: 2;
 }
 
-.unit-stats{
-
-    position:relative;
-
-    top:3.5em;
-
-    margin-left:-33%;
-
-    font-size:clamp(8px, 0.8vw, 18px);
-
-    font-weight:600;
-
-    line-height:1.45;
-
-    width:140%;
+.unit-stats {
+    position: absolute; /* Змінено: з relative на absolute */
+    top: 40%; /* Змінено: стабільний відступ у відсотках замість 1.8em */
+    left: 0;
+    margin-left: -33%;
+    font-size: clamp(5px, 0.8vw, 18px); /* Змінено: знижено мінімум */
+    font-weight: 600;
+    line-height: 1.45;
+    width: 140%;
 }
+
 
 .progress{
 
