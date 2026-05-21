@@ -11,30 +11,33 @@
 <style>
 
     html, body{
-    overflow-x:auto;
+        margin:0;
+        padding:0;
+        width:100%;
+        overflow-x:hidden;
+        background:#f2f2f2;
+        font-family:'Montserrat', sans-serif;
     }
 
     body{
-        margin:0;
-        background:#f2f2f2;
         display:flex;
         justify-content:center;
-        align-items:center;
-        min-height:100vh;
-        font-family:'Montserrat', sans-serif;
     }
 
     .infographic{
         position:relative;
-        width:1536px;
-        height:864px;
 
-        background:url("background.png") no-repeat center center;
+        width:100vw;
+        max-width:1536px;
+
+        aspect-ratio:1536 / 864;
+
+        background:url("background.png")
+        no-repeat center center;
+
         background-size:cover;
 
         overflow:hidden;
-
-        min-width:1536px;
     }
 
     .text{
@@ -44,29 +47,34 @@
         line-height:1.05;
     }
 
+    /* ЗАГОЛОВОК */
+
     .title{
-        font-size:40px;
+        font-size:clamp(14px, 2.6vw, 40px);
         font-weight:800;
-        width:1250px;
-        left:55px;
-        top:32px;
+
+        width:81.38%;
+
+        left:3.58%;
+        top:3.70%;
+
         text-align:left;
     }
 
     /* ГОЛОВНІ БЛОКИ */
 
     .big-number{
-        font-size:88px;
+        font-size:clamp(26px, 5.72vw, 88px);
         font-weight:800;
     }
 
     .big-label{
-        font-size:28px;
+        font-size:clamp(12px, 1.82vw, 28px);
         font-weight:700;
     }
 
     .small-label{
-        font-size:14px;
+        font-size:clamp(8px, 0.91vw, 14px);
         font-weight:500;
         line-height:1.25;
     }
@@ -74,122 +82,125 @@
     /* ЛІВЕ КОЛО */
 
     .missions{
-        left:165px;
-        top:290px;
-        width:280px;
+        left:10.74%;
+        top:33.56%;
+        width:18.22%;
     }
 
     /* ЦЕНТР */
 
     .distance{
-        left:625px;
-        top:290px;
-        width:300px;
+        left:40.69%;
+        top:33.56%;
+        width:19.53%;
     }
 
     /* ПРАВЕ КОЛО */
 
     .cargo{
-        left:1090px;
-        top:290px;
-        width:300px;
+        left:70.96%;
+        top:33.56%;
+        width:19.53%;
     }
 
     /* НИЖНІ ЗАГОЛОВКИ */
 
     .section-title{
-        font-size:28px;
+        font-size:clamp(12px, 1.82vw, 28px);
         font-weight:800;
         text-align:left;
     }
 
     .left-section{
-        left:55px;
-        top:560px;
+        left:3.58%;
+        top:64.81%;
     }
 
     .right-section{
-        left:740px;
-        top:560px;
+        left:48.17%;
+        top:64.81%;
     }
 
-    /* ЕВАКУАЦІЯ */
-
-    .evac1{
-        left:170px;
-        top:610px;
-        width:300px;
-        text-align:left;
-    }
+    /* FLEX */
 
     .flex{
         display:flex;
         align-items:center;
     }
 
+    /* ЕВАКУАЦІЯ */
+
+    .evac1{
+        left:11.07%;
+        top:70.60%;
+        width:19.53%;
+        text-align:left;
+    }
+
     .evac2{
-        left:170px;
-        top:725px;
-        width:300px;
+        left:11.07%;
+        top:83.91%;
+        width:19.53%;
         text-align:left;
     }
 
     .ops{
-        left:520px;
-        top:610px;
-        width:220px;
+        left:33.85%;
+        top:70.60%;
+        width:14.32%;
         text-align:left;
     }
 
     .mini-number{
-        font-size:58px;
+        font-size:clamp(18px, 3.77vw, 58px);
         font-weight:800;
-        margin-right:10px;
+        margin-right:0.65%;
     }
 
     .mini-label{
-        font-size:20px;
+        font-size:clamp(9px, 1.30vw, 20px);
         font-weight:700;
     }
 
     .mini-desc{
-        font-size:16px;
+        font-size:clamp(7px, 1.04vw, 16px);
         font-weight:500;
         line-height:1.2;
-        margin-top:0px;
+        margin-top:0;
     }
 
     /* ПІДРОЗДІЛИ */
 
     .unit{
         position:absolute;
-        width:250px;
+        width:16.27%;
         color:#000;
     }
 
     .unit-title{
-        font-size:22px;
+        font-size:clamp(10px, 1.43vw, 22px);
         font-weight:700;
-        letter-spacing:-1px;
-        margin-top:0px;
+
+        letter-spacing:-0.05vw;
 
         display:inline-block;
 
         background:#2d5d93;
         color:#fff;
 
-        padding:10px 10px;
+        padding:0.65vw;
 
-        border-radius:14px;
+        border-radius:0.91vw;
 
         box-shadow:0 2px 6px rgba(0,0,0,0.15);
     }
 
     .unit-stats{
-        margin-top:35px;
-        margin-left:-75px;
+        margin-top:2.28vw;
+        margin-left:-4.88vw;
 
-        font-size:18px;
+        font-size:clamp(8px, 1.17vw, 18px);
+
         font-weight:600;
         line-height:1.45;
 
@@ -197,10 +208,10 @@
     }
 
     .progress{
-        margin-left:5px;
+        margin-left:0.33vw;
 
-        width:150px;
-        height:12px;
+        width:9.76vw;
+        height:0.78vw;
 
         background:#d9e4ef;
 
@@ -224,19 +235,21 @@
         transition:0.5s;
     }
 
+    /* ПОЗИЦІЇ РОТ */
+
     .unit1{
-        left:810px;
-        top:610px;
+        left:52.73%;
+        top:70.60%;
     }
 
     .unit2{
-        left:1078px;
-        top:610px;
+        left:70.18%;
+        top:70.60%;
     }
 
     .unit3{
-        left:1347px;
-        top:610px;
+        left:87.70%;
+        top:70.60%;
     }
 
 </style>
@@ -523,6 +536,20 @@
         return `${months[month]} ${year} року`;
     }
 
+    function formatTons(kg){
+
+    const tons = Math.floor(kg / 1000);
+
+    if(tons === 1){
+        return '1 тонну';
+    }
+
+    if(tons >= 2 && tons <= 4){
+        return tons + ' тонни';
+    }
+
+    return tons + ' тонн';
+        }
 
     async function loadData(){
 
@@ -603,20 +630,7 @@
                 .style.width = percent + '%';
         }
 
-        function formatTons(kg){
 
-    const tons = Math.floor(kg / 1000);
-
-    if(tons === 1){
-        return '1 тонну';
-    }
-
-    if(tons >= 2 && tons <= 4){
-        return tons + ' тонни';
-    }
-
-    return tons + ' тонн';
-        }
 
 
         // ПРОГРЕС БАРИ
