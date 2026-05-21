@@ -260,12 +260,77 @@
         top:70.60%;
     }
 
+    #saveBtn{
+
+    position:fixed;
+
+    right:20px;
+    bottom:20px;
+
+    z-index:9999;
+
+    border:none;
+
+    background:linear-gradient(
+        180deg,
+        #3f73ad 0%,
+        #234c7d 100%
+    );
+
+    color:#fff;
+
+    padding:14px 22px;
+
+    border-radius:16px;
+
+    font-size:16px;
+    font-weight:700;
+
+    font-family:'Montserrat', sans-serif;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.2);
+
+    transition:
+        transform 0.15s,
+        opacity 0.15s;
+}
+
+#saveBtn:hover{
+    transform:scale(1.04);
+}
+
+#saveBtn:active{
+    transform:scale(0.98);
+}
+
+@media (max-width:768px){
+
+    #saveBtn{
+
+        right:12px;
+        bottom:12px;
+
+        padding:10px 16px;
+
+        font-size:13px;
+
+        border-radius:12px;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="infographic">
+
+    <button id="saveBtn">
+    Зберегти PNG
+    </button>
 
     <!-- ЗАГОЛОВОК -->
 
@@ -721,7 +786,52 @@
 
     loadData();
 
+
+    document
+    .getElementById('saveBtn')
+    .addEventListener('click', savePNG);
+
+
+async function savePNG(){
+
+    const button =
+        document.getElementById('saveBtn');
+
+    // ховаємо кнопку
+
+    button.style.visibility = 'hidden';
+
+    const infographic =
+        document.querySelector('.infographic');
+
+    const canvas = await html2canvas(
+        infographic,
+        {
+            useCORS:true,
+            scale:2,
+            backgroundColor:null
+        }
+    );
+
+    // повертаємо кнопку
+
+    button.style.visibility = 'visible';
+
+    const link =
+        document.createElement('a');
+
+    link.download =
+        'alter-ego-infographic.png';
+
+    link.href =
+        canvas.toDataURL('image/png');
+
+    link.click();
+}
+
 </script>
 
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    
 </body>
                 </html>
