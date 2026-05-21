@@ -2,7 +2,8 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!-- Дозволяємо зумування (прибрано user-scalable=no) -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="color-scheme" content="light only">
 
 <title>Інфографіка Alter Ego</title>
@@ -14,20 +15,17 @@
         color-scheme: light;
     }
 
-    html, body{
-        margin:0;
-        padding:0;
-        width:100%;
-        overflow-x:hidden;
-        background:#f2f2f2;
-        font-family:'Montserrat', sans-serif;
+    * {
+        box-sizing: border-box;
     }
 
-    body{
-        display:flex;
-        justify-content:center;
-        /* Даємо трохи місця знизу для кнопки */
-        padding-bottom: 80px; 
+    html, body{
+        margin:0;
+        padding: 16px; /* Відступи від країв екрана */
+        width: 100%;
+        min-height: 100vh;
+        background:#f2f2f2;
+        font-family:'Montserrat', sans-serif;
     }
 
     /* ДОДАЄМО МАСШТАБУВАННЯ ДЛЯ КОНТЕЙНЕРІВ */
@@ -35,7 +33,7 @@
         position: relative;
         width: 100%;
         max-width: 1536px;
-        margin: auto;
+        margin: 0 auto 80px auto; /* 80px знизу, щоб було місце для кнопки */
         aspect-ratio: 1536 / 864; /* Тримає правильну висоту при звуженні */
     }
 
@@ -51,13 +49,15 @@
         transform-origin: top left; /* Точка відліку для масштабу */
     }
 
-    .text{
-        position:absolute;
-        color:#010101 !important;
-        -webkit-text-fill-color: #010101 !important; /* Броня від Опери */
+    /* ХАК ПРОТИ ОПЕРИ: Робимо текст прозорим, а замість нього малюємо чорну тінь */
+    .text, .unit {
+        position: absolute;
+        color: transparent !important;
+        -webkit-text-fill-color: transparent !important; 
+        text-shadow: 0 0 0px #010101 !important; /* Саме тінь дає чорний колір */
         forced-color-adjust: none;
-        text-align:center;
-        line-height:1.05;
+        text-align: center;
+        line-height: 1.05;
     }
 
     /* ЗАГОЛОВОК */
@@ -104,9 +104,6 @@
         position: absolute;
         width: 16.27%;
         height: 22%; 
-        color: #010101 !important;
-        -webkit-text-fill-color: #010101 !important; /* Броня від Опери */
-        forced-color-adjust: none;
     }
 
     .unit-title {
@@ -118,8 +115,12 @@
         letter-spacing: -0.03em;
         display: inline-block;
         background: #2d5d93;
-        color: #fff !important;
-        -webkit-text-fill-color: #fff !important;
+        
+        /* Хак для білого тексту на синьому фоні */
+        color: transparent !important;
+        -webkit-text-fill-color: transparent !important;
+        text-shadow: 0 0 0px #ffffff !important;
+        
         padding: 0.45em 0.65em;
         border-radius: 0.7em;
         box-shadow: 0 2px 6px rgba(0,0,0,0.15);
@@ -163,18 +164,21 @@
     .unit2{ left:70.18%; top:70.60%; }
     .unit3{ left:87.70%; top:70.60%; }
 
+    /* КНОПКА ЗБЕРЕЖЕННЯ (прив'язана під картинкою справа) */
     #saveBtn{
-        position: fixed;
-        right: 16px;
-        bottom: 16px;
-        z-index:9999;
+        position: absolute; /* Відносно .infographic-wrapper */
+        right: 0;           /* Правий край */
+        bottom: -64px;      /* Відразу під картинкою */
+        z-index:99;
         display:flex;
         align-items:center;
         justify-content:center;
         gap:8px;
         border:none;
         background:linear-gradient(180deg, #3f73ad 0%, #234c7d 100%);
-        color:#fff;
+        color:#fff !important;
+        -webkit-text-fill-color: #fff !important; /* Захист білого кольору */
+        text-shadow: none !important;
         font-family:'Montserrat', sans-serif;
         font-weight:800;
         font-size: 16px;
@@ -313,9 +317,10 @@
             </div>
         </div>
     </div>
+    
+    <!-- Кнопка тепер всередині контейнера інфографіки, що дозволяє їй бути відразу під зображенням -->
+    <button id="saveBtn">Зберегти PNG</button>
 </div>
-
-<button id="saveBtn">Зберегти PNG</button>
     
 <script>
     const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMw6H2nTGjSr4xbZNjl67tncfknalcb-RT7fBLfmJna7qwEkwxh49XHC3AgDEpWHG7IdnuflyXXnWE/pub?gid=825422948&single=true&output=csv';
@@ -415,20 +420,18 @@
 
     loadData();
 
-    // --- НОВИЙ КОД ДЛЯ АВТОМАСШТАБУВАННЯ ---
+    // --- АВТОМАСШТАБУВАННЯ З ПІДТРИМКОЮ ЗУМУ ---
     function resizeInfographic() {
         const wrapper = document.querySelector('.infographic-wrapper');
         const infographic = document.querySelector('.infographic');
         if (!wrapper || !infographic) return;
         
-        // Рахуємо, у скільки разів екран менший за 1536px
+        // Масштабуємо інфографіку під ширину контейнера
         const scale = wrapper.clientWidth / 1536;
         infographic.style.transform = `scale(${scale})`;
     }
 
-    // Запускаємо при завантаженні та зміні розміру вікна
     window.addEventListener('resize', resizeInfographic);
-    // Викликаємо одразу
     resizeInfographic();
     // ----------------------------------------
 
@@ -440,18 +443,16 @@
 
         const infographic = document.querySelector('.infographic');
 
-        // Тимчасово знімаємо масштаб для збереження в повній якості 1536x864
         infographic.style.transform = 'none';
 
         const canvas = await html2canvas(infographic, {
             useCORS: true,
-            scale: 2, // Подвійна якість збереження
+            scale: 2,
             backgroundColor: null,
             width: 1536,
             height: 864
         });
 
-        // Одразу повертаємо масштаб назад
         resizeInfographic();
         button.style.visibility = 'visible';
 
@@ -466,3 +467,4 @@
 
 </body>
 </html>
+
