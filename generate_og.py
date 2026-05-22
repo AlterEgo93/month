@@ -14,12 +14,12 @@ def generate_screenshot():
         # Чекаємо 1.5 секунди (1500 мс), щоб відпрацювала анімація прогрес-барів
         page.wait_for_timeout(1500)
         
-        # Зберігаємо результат
-        page.screenshot(path="og-image.png")
+        # Зберігаємо у форматі JPEG з якістю 70% для WhatsApp/Telegram
+        page.screenshot(path="og-image.jpg", type="jpeg", quality=70)
         
         browser.close()
-        print("Скриншот og-image.png успішно створено!")
+        print("Скриншот og-image.jpg успішно створено!")
 
 if __name__ == "__main__":
     generate_screenshot()
-  
+    
