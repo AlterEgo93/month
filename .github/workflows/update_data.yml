@@ -1,15 +1,15 @@
-name: Update Dashboard Data
+name: Update Dashboard Data and OG Image
 
 on:
   schedule:
-    - cron: '*/1 * * * *' # Запуск кожні 15 хвилин
-  workflow_dispatch: # Дозволяє запустити скрипт вручну кнопкою з інтерфейсу
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
 
 jobs:
   update-data:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Дозвіл боту на запис у репозиторій
+      contents: write
       
     steps:
       - name: Checkout repository
@@ -20,14 +20,27 @@ jobs:
         with:
           python-version: '3.10'
           
+      - name: Install dependencies
+        run: |
+          pip install playwright
+          playwright install --with-deps chromium
+          
       - name: Fetch and convert data
         run: python update_data.py
+        
+      - name: Generate OG Screenshot
+        run: |
+          # Піднімаємо локальний сервер у фоновому режимі (порт 8000)
+          python -m http.server 8000 &
+          # Чекаємо 2 секунди, щоб сервер точно запустився
+          sleep 2
+          # Робимо скриншот
+          python generate_og.py
         
       - name: Commit and push changes
         run: |
           git config --global user.name "GitHub Action Bot"
           git config --global user.email "action@github.com"
-          git add data.json
-          # Робимо коміт лише якщо файл data.json дійсно змінився
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Автоматичне оновлення даних" && git push)
+          git add data.json og-image.png
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Автоматичне оновлення даних та OG-скриншоту" && git push)
           
