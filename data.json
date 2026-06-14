@@ -1,11 +1,11 @@
 {
-  "total_missions": 125,
+  "total_missions": 124,
   "total_distance": 2005,
   "total_weight": 12347,
   "evac_people": 6,
   "evac_300": 5,
   "evac_200": 1,
-  "evac_nrk": 10,
+  "evac_nrk": 9,
   "strike_ops": 1,
   "engineer_ops": 0,
   "stalker_missions": 48,
@@ -20,10 +20,10 @@
   "black_evac_300": 4,
   "black_evac_200": 1,
   "black_evac_nrk": 8,
-  "bears_missions": 46,
+  "bears_missions": 45,
   "bears_distance": 652,
   "bears_weight": 5275,
   "bears_evac_300": 1,
   "bears_evac_200": 0,
-  "bears_evac_nrk": 2
+  "bears_evac_nrk": 1
 }
