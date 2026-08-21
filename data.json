@@ -1,6 +1,6 @@
 {
   "total_missions": 295,
-  "total_distance": 4501,
+  "total_distance": 4521,
   "total_weight": 31478,
   "evac_people": 8,
   "evac_300": 5,
@@ -15,7 +15,7 @@
   "stalker_evac_200": 0,
   "stalker_evac_nrk": 2,
   "black_missions": 91,
-  "black_distance": 1382,
+  "black_distance": 1402,
   "black_weight": 10042,
   "black_evac_300": 5,
   "black_evac_200": 3,
