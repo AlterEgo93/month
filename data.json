@@ -1,7 +1,7 @@
 {
   "total_missions": 374,
-  "total_distance": 6083,
-  "total_weight": 41909,
+  "total_distance": 6104,
+  "total_weight": 41911,
   "evac_people": 11,
   "evac_300": 7,
   "evac_200": 4,
@@ -9,7 +9,7 @@
   "strike_ops": 4,
   "engineer_ops": 0,
   "stalker_missions": 116,
-  "stalker_distance": 2544,
+  "stalker_distance": 2565,
   "stalker_weight": 12596,
   "stalker_evac_300": 1,
   "stalker_evac_200": 0,
@@ -22,7 +22,7 @@
   "black_evac_nrk": 12,
   "bears_missions": 148,
   "bears_distance": 1689,
-  "bears_weight": 15600,
+  "bears_weight": 15602,
   "bears_evac_300": 0,
   "bears_evac_200": 0,
   "bears_evac_nrk": 3
