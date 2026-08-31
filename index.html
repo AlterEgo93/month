@@ -25,32 +25,31 @@
 
     html, body{
         margin:0;
-        padding: 16px; /* Невеликі відступи по краях екрана */
+        padding: 16px;
         width: 100%;
         min-height: 100vh;
         background:#f2f2f2;
         font-family:'Montserrat', sans-serif;
     }
 
-    /* ДОДАЄМО МАСШТАБУВАННЯ ДЛЯ КОНТЕЙНЕРІВ */
     .infographic-wrapper {
         position: relative;
         width: 100%;
         max-width: 1536px;
-        margin: 0 auto 80px auto; /* 80px знизу — місце для кнопки збереження */
-        aspect-ratio: 1536 / 864; /* Тримає правильну висоту при звуженні */
+        margin: 0 auto 80px auto;
+        aspect-ratio: 1536 / 864;
     }
 
     .infographic {
         position: absolute;
         top: 0;
         left: 0;
-        width: 1536px; /* Фіксуємо оригінальний розмір */
-        height: 864px; /* Фіксуємо оригінальний розмір */
+        width: 1536px;
+        height: 864px;
         background: url("background.png") no-repeat center center;
         background-size: cover;
         overflow: hidden;
-        transform-origin: top left; /* Точка відліку для масштабу */
+        transform-origin: top left;
     }
 
     .text, .unit {
@@ -64,11 +63,7 @@
         text-align:left;
     }
 
-    /* ==========================================
-       АБСОЛЮТНА БРОНЯ ВІД ТЕМНОГО РЕЖИМУ ОПЕРИ
-       Заливаємо букви чорною картинкою. 
-       Працює завжди, поки не робиться скріншот.
-       ========================================== */
+    /* АБСОЛЮТНА БРОНЯ ВІД ТЕМНОГО РЕЖИМУ ОПЕРИ */
     body:not(.exporting) .title, 
     body:not(.exporting) .big-number, 
     body:not(.exporting) .big-label, 
@@ -89,22 +84,22 @@
     /* ЗАГОЛОВОК */
     .title{ font-size: 40px; font-weight:800; width:81.38%; left:3.58%; top:3.70%; text-align:left; }
 
-    /* ГОЛОВНІ БЛОКИ */
+    /* ГОЛОВНІ БЛОКИ (Вирівняно по центру кіл фону) */
     .big-number{ font-size: 88px; font-weight:800; }
     .big-label{ font-size: 28px; font-weight:700; }
     .small-label{ font-size: 14px; font-weight:500; line-height:1.25; }
 
     /* ЛІВЕ КОЛО */
     .missions{ 
-        left: 19.85%; /* Координата центру */
+        left: 21.35%; 
         top: 33.56%; 
         width: 18.22%; 
-        transform: translateX(-50%); /* Зсув на половину ширини блоку */
+        transform: translateX(-50%); 
     }
 
     /* ЦЕНТР */
     .distance{ 
-        left: 50.5%; /* Ідеально по центру екрана */
+        left: 50.00%; 
         top: 33.56%; 
         width: 19.53%; 
         transform: translateX(-50%); 
@@ -112,24 +107,24 @@
 
     /* ПРАВЕ КОЛО */
     .cargo{ 
-        left: 80.72%; /* Координата центру */
+        left: 79.17%; 
         top: 33.56%; 
         width: 21%; 
         transform: translateX(-50%); 
     }
     
-    /* НИЖНІ ЗАГОЛОВКИ */
+    /* НИЖНІ ЗАГОЛОВКИ (Зсунуто трохи праворуч) */
     .section-title{ font-size: 28px; font-weight:800; text-align:left; }
-    .left-section{ left:3.58%; top:64.81%; }
+    .left-section{ left:5.58%; top:64.81%; }
     .right-section{ left:48.17%; top:64.81%; }
 
     /* FLEX */
     .flex{ display:flex; align-items:center; }
 
-    /* ЕВАКУАЦІЯ */
-    .evac1{ left:11.07%; top:70.60%; width:19.53%; text-align:left; }
-    .evac2{ left:11.07%; top:83.91%; width:19.53%; text-align:left; }
-    .ops{ left:33.85%; top:70.60%; width:14.32%; text-align:left; }
+    /* ЕВАКУАЦІЯ ТА ОПЕРАЦІЇ (Зсунуто трохи праворуч) */
+    .evac1{ left:13.07%; top:70.60%; width:19.53%; text-align:left; }
+    .evac2{ left:13.07%; top:83.91%; width:19.53%; text-align:left; }
+    .ops{ left:35.85%; top:70.60%; width:14.32%; text-align:left; }
 
     .mini-number{ font-size: 58px; font-weight:800; margin-right:2%; }
     .mini-label{ font-size: 20px; font-weight:700; }
@@ -182,12 +177,12 @@
         border-radius:999px; width:0%; transition:0.5s;
     }
 
-    /* ПОЗИЦІЇ РОТ */
+    /* ПОЗИЦІЇ РОТ (Зсунуто роти 2 і 3 трохи ліворуч) */
     .unit1{ left:52.73%; top:70.60%; }
-    .unit2{ left:70.18%; top:70.60%; }
-    .unit3{ left:87.70%; top:70.60%; }
+    .unit2{ left:68.50%; top:70.60%; }
+    .unit3{ left:84.30%; top:70.60%; }
 
-    /* ВИПРАВЛЕНО ПОЗИЦІЮ КНОПКИ: тепер вона завжди ідеально під картинкою справа */
+    /* КНОПКА ЗБЕРЕЖЕННЯ */
     #saveBtn{
         position: absolute;
         right: 0;
@@ -268,7 +263,7 @@
             <div class="mini-desc">Кількість операцій з порятунку<br>та вивезення пошкоджених комплексів</div>
         </div>
 
-<div class="text ops">
+        <div class="text ops">
             <div class="flex" id="strike-wrapper" style="margin-bottom: 12px;">
                 <span class="mini-number" id="strike-ops"></span>
                 <span class="mini-label">ударна<br>місія</span>
@@ -359,7 +354,6 @@
         document.getElementById('total-weight').textContent = formatNumber(data.total_weight);
         document.getElementById('weight-tons').textContent = formatTons(data.total_weight);
 
-        // ЛОГІКА ПРИХОВУВАННЯ ЕВАКУАЦІЇ ОСОБОВОГО СКЛАДУ (залишається display: none, бо це окремий блок)
         const evacPeopleWrapper = document.getElementById('evac-people-wrapper');
         if (!data.evac_people || data.evac_people === 0) {
             evacPeopleWrapper.style.display = 'none';
@@ -392,7 +386,6 @@
             document.getElementById('evac-nrk').textContent = formatNumber(data.evac_nrk);
         }
 
-        // ЛОГІКА ПРИХОВУВАННЯ УДАРНИХ МІСІЙ - ЗМІНЕНО НА visibility: hidden
         const strikeWrapper = document.getElementById('strike-wrapper');
         if (!data.strike_ops || data.strike_ops === 0) {
             strikeWrapper.style.visibility = 'hidden';
@@ -401,7 +394,6 @@
             document.getElementById('strike-ops').textContent = formatNumber(data.strike_ops);
         }
 
-        // ЛОГІКА ПРИХОВУВАННЯ ІНЖЕНЕРНИХ ОПЕРАЦІЙ - ЗМІНЕНО НА visibility: hidden
         const engineerWrapper = document.getElementById('engineer-wrapper');
         if (!data.engineer_ops || data.engineer_ops === 0) {
             engineerWrapper.style.visibility = 'hidden';
@@ -410,7 +402,6 @@
             document.getElementById('engineer-ops').textContent = formatNumber(data.engineer_ops);
         }
 
-        // ЛОГІКА ПРИХОВУВАННЯ / ВІДОБРАЖЕННЯ РОЗВІД МІСІЙ - ЗМІНЕНО НА visibility: hidden
         const reconWrapper = document.getElementById('recon-wrapper');
         const reconVal = (data.recon_ops !== undefined && data.recon_ops !== null) ? data.recon_ops : 13;
         if (!reconVal || reconVal === 0) {
@@ -483,7 +474,6 @@
 
     loadData();
 
-    // --- АВТОМАСШТАБУВАННЯ ---
     function resizeInfographic() {
         const wrapper = document.querySelector('.infographic-wrapper');
         const infographic = document.querySelector('.infographic');
@@ -496,7 +486,6 @@
     window.addEventListener('resize', resizeInfographic);
     resizeInfographic();
 
-    // --- ФУНКЦІЯ ЗБЕРЕЖЕННЯ ---
     document.getElementById('saveBtn').addEventListener('click', savePNG);
 
     async function savePNG(){
@@ -505,11 +494,9 @@
 
         const infographic = document.querySelector('.infographic');
 
-        // Додаємо клас, який вимикає анти-темний хак перед генерацією скріншоту
         document.body.classList.add('exporting');
         infographic.style.transform = 'none';
 
-        // Даємо браузеру 50 мілісекунд, щоб застосувати зміну стилів (прибрати прозорість)
         await new Promise(r => setTimeout(r, 50));
 
         const canvas = await html2canvas(infographic, {
@@ -520,7 +507,6 @@
             height: 864
         });
 
-        // Повертаємо все як було
         resizeInfographic();
         document.body.classList.remove('exporting');
         button.style.visibility = 'visible';
