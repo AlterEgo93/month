@@ -287,8 +287,8 @@
                 <span class="mini-label">збиті<br>БПЛА</span>
             </div>
 
-            <!-- 3. Розвід місія (завжди order: 3, піднята вище чітко навпроти ока) -->
-            <div class="flex" id="recon-wrapper" style="order: 3; margin-top: -4px;">
+            <!-- 3. Розвід місія (order: 3, злегка опущена нижче навпроти ока) -->
+            <div class="flex" id="recon-wrapper" style="order: 3; margin-top: 6px;">
                 <span class="mini-number" id="recon-ops">13</span>
                 <span class="mini-label">розвід<br>місія</span>
             </div>
@@ -408,17 +408,16 @@
             document.getElementById('strike-ops').textContent = formatNumber(data.strike_ops);
         }
 
-        // Логіка інженерних місій та збитих БПЛА (використовуємо display: none, щоб вони не займали місце)
         const engineerWrapper = document.getElementById('engineer-wrapper');
         const destroyedWrapper = document.getElementById('destroyed-wrapper');
 
         if (!data.engineer_ops || data.engineer_ops === 0) {
             engineerWrapper.style.display = 'none';
-            destroyedWrapper.style.order = '2'; // Збиті БПЛА займають 2-ге місце замість інженерних
+            destroyedWrapper.style.order = '2'; 
         } else {
             engineerWrapper.style.display = 'flex';
             document.getElementById('engineer-ops').textContent = formatNumber(data.engineer_ops);
-            destroyedWrapper.style.order = '4'; // Збиті БПЛА повертаються на 4-те місце
+            destroyedWrapper.style.order = '4'; 
         }
 
         const destroyedVal = (data.destroyed_uav !== undefined && data.destroyed_uav !== null) ? data.destroyed_uav : 94;
