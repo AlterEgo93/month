@@ -275,20 +275,20 @@
                 <span class="mini-label">ударна<br>місія</span>
             </div>
             
-            <!-- 2. Збиті БПЛА (order 2 за замовчуванням - відразу після ударних) -->
-            <div class="flex" id="destroyed-wrapper" style="margin-bottom: 8px; order: 2;">
-                <span class="mini-number" id="destroyed-ops">94</span>
-                <span class="mini-label">збиті<br>БПЛА</span>
-            </div>
-
-            <!-- 3. Інженерна операція (order 3 за замовчуванням) -->
-            <div class="flex" id="engineer-wrapper" style="margin-bottom: 8px; order: 3;">
+            <!-- 2. Інженерна операція (order: 2 за замовчуванням) -->
+            <div class="flex" id="engineer-wrapper" style="margin-bottom: 8px; order: 2;">
                 <span class="mini-number" id="engineer-ops"></span>
                 <span class="mini-label">інженерна<br>операція</span>
             </div>
 
-            <!-- 4. Розвід місія (завжди 4-та, піднята вище чітко навпроти ока) -->
-            <div class="flex" id="recon-wrapper" style="order: 4;">
+            <!-- 4. Збиті БПЛА (order: 4 за замовчуванням, зміститься на 2, якщо немає інженерних) -->
+            <div class="flex" id="destroyed-wrapper" style="margin-bottom: 8px; order: 4;">
+                <span class="mini-number" id="destroyed-ops">94</span>
+                <span class="mini-label">збиті<br>БПЛА</span>
+            </div>
+
+            <!-- 3. Розвід місія (завжди order: 3, піднята вище чітко навпроти ока) -->
+            <div class="flex" id="recon-wrapper" style="order: 3; margin-top: -4px;">
                 <span class="mini-number" id="recon-ops">13</span>
                 <span class="mini-label">розвід<br>місія</span>
             </div>
@@ -408,17 +408,17 @@
             document.getElementById('strike-ops').textContent = formatNumber(data.strike_ops);
         }
 
-        // Логіка інженерних місій: якщо інженерних немає, ховаємо їх, а збиті БПЛА переміщуємо на їхнє місце (order: 3)
+        // Логіка інженерних місій та збитих БПЛА
         const engineerWrapper = document.getElementById('engineer-wrapper');
         const destroyedWrapper = document.getElementById('destroyed-wrapper');
 
         if (!data.engineer_ops || data.engineer_ops === 0) {
             engineerWrapper.style.visibility = 'hidden';
-            destroyedWrapper.style.order = '3'; 
+            destroyedWrapper.style.order = '2'; // Збиті БПЛА стають на 2 місце замість інженерних
         } else {
             engineerWrapper.style.visibility = 'visible';
             document.getElementById('engineer-ops').textContent = formatNumber(data.engineer_ops);
-            destroyedWrapper.style.order = '2'; // Збиті БПЛА одразу після ударних
+            destroyedWrapper.style.order = '4'; // Збиті БПЛА йдуть на 4 місце
         }
 
         const destroyedVal = (data.destroyed_uav !== undefined && data.destroyed_uav !== null) ? data.destroyed_uav : 94;
