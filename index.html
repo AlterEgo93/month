@@ -9,13 +9,13 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <meta property="og:title" content="Alter Ego" />
+<meta property="og:title" content="Alter Ego" />
 <meta property="og:description" content="Інфографіка за місяць" />
 <meta property="og:image" content="https://AlterEgo93.github.io/month/og-image.jpg" />
 <meta property="og:image:width" content="1536" />
 <meta property="og:image:height" content="864" />
 <meta name="twitter:card" content="summary_large_image" />
-  
+
 <style>
     :root {
         color-scheme: light;
@@ -269,14 +269,19 @@
         </div>
 
         <div class="text ops">
-            <div class="flex" id="strike-wrapper" style="margin-bottom: 24px;">
+            <div class="flex" id="strike-wrapper" style="margin-bottom: 12px;">
                 <span class="mini-number" id="strike-ops"></span>
                 <span class="mini-label">ударна<br>місія</span>
             </div>
             
-            <div class="flex" id="engineer-wrapper">
+            <div class="flex" id="engineer-wrapper" style="margin-bottom: 12px;">
                 <span class="mini-number" id="engineer-ops"></span>
                 <span class="mini-label">інженерна<br>операція</span>
+            </div>
+
+            <div class="flex" id="recon-wrapper">
+                <span class="mini-number" id="recon-ops">13</span>
+                <span class="mini-label">розвідувальна<br>місія</span>
             </div>
         </div>
 
@@ -406,6 +411,16 @@
         } else {
             engineerWrapper.style.display = 'flex';
             document.getElementById('engineer-ops').textContent = formatNumber(data.engineer_ops);
+        }
+
+        // ЛОГІКА ПРИХОВУВАННЯ / ВІДОБРАЖЕННЯ РОЗВІДУВАЛЬНИХ МІСІЙ
+        const reconWrapper = document.getElementById('recon-wrapper');
+        const reconVal = (data.recon_ops !== undefined && data.recon_ops !== null) ? data.recon_ops : 13;
+        if (!reconVal || reconVal === 0) {
+            reconWrapper.style.display = 'none';
+        } else {
+            reconWrapper.style.display = 'flex';
+            document.getElementById('recon-ops').textContent = formatNumber(reconVal);
         }
 
         const maxMissions = Math.max(data.stalker_missions || 0, data.black_missions || 0, data.bears_missions || 0);
