@@ -191,7 +191,7 @@
     #saveBtn{
         position: absolute;
         right: 0;
-        bottom: -64px; /* Зсув вниз відносно картинки */
+        bottom: -64px;
         z-index:99;
         display:flex; align-items:center; justify-content:center; gap:8px;
         border:none;
@@ -281,7 +281,7 @@
 
             <div class="flex" id="recon-wrapper">
                 <span class="mini-number" id="recon-ops">13</span>
-                <span class="mini-label">розвідувальна<br>місія</span>
+                <span class="mini-label">розвід<br>місія</span>
             </div>
         </div>
 
@@ -359,7 +359,7 @@
         document.getElementById('total-weight').textContent = formatNumber(data.total_weight);
         document.getElementById('weight-tons').textContent = formatTons(data.total_weight);
 
-        // ЛОГІКА ПРИХОВУВАННЯ ЕВАКУАЦІЇ ОСОБОВОГО СКЛАДУ
+        // ЛОГІКА ПРИХОВУВАННЯ ЕВАКУАЦІЇ ОСОБОВОГО СКЛАДУ (залишається display: none, бо це окремий блок)
         const evacPeopleWrapper = document.getElementById('evac-people-wrapper');
         if (!data.evac_people || data.evac_people === 0) {
             evacPeopleWrapper.style.display = 'none';
@@ -367,7 +367,6 @@
             evacPeopleWrapper.style.display = 'block';
             document.getElementById('evac-people').textContent = formatNumber(data.evac_people);
 
-            // Поранені (300)
             const evac300Wrapper = document.getElementById('evac-300-wrapper');
             if (!data.evac_300 || data.evac_300 === 0) {
                 evac300Wrapper.style.display = 'none';
@@ -376,7 +375,6 @@
                 document.getElementById('evac-300').textContent = formatNumber(data.evac_300);
             }
 
-            // Загиблі (200)
             const evac200Wrapper = document.getElementById('evac-200-wrapper');
             if (!data.evac_200 || data.evac_200 === 0) {
                 evac200Wrapper.style.display = 'none';
@@ -386,7 +384,6 @@
             }
         }
 
-        // ЛОГІКА ПРИХОВУВАННЯ ЕВАКУАЦІЇ НРК
         const evacNrkWrapper = document.getElementById('evac-nrk-wrapper');
         if (!data.evac_nrk || data.evac_nrk === 0) {
             evacNrkWrapper.style.display = 'none';
@@ -395,31 +392,31 @@
             document.getElementById('evac-nrk').textContent = formatNumber(data.evac_nrk);
         }
 
-        // ЛОГІКА ПРИХОВУВАННЯ УДАРНИХ МІСІЙ
+        // ЛОГІКА ПРИХОВУВАННЯ УДАРНИХ МІСІЙ - ЗМІНЕНО НА visibility: hidden
         const strikeWrapper = document.getElementById('strike-wrapper');
         if (!data.strike_ops || data.strike_ops === 0) {
-            strikeWrapper.style.display = 'none';
+            strikeWrapper.style.visibility = 'hidden';
         } else {
-            strikeWrapper.style.display = 'flex';
+            strikeWrapper.style.visibility = 'visible';
             document.getElementById('strike-ops').textContent = formatNumber(data.strike_ops);
         }
 
-        // ЛОГІКА ПРИХОВУВАННЯ ІНЖЕНЕРНИХ ОПЕРАЦІЙ
+        // ЛОГІКА ПРИХОВУВАННЯ ІНЖЕНЕРНИХ ОПЕРАЦІЙ - ЗМІНЕНО НА visibility: hidden
         const engineerWrapper = document.getElementById('engineer-wrapper');
         if (!data.engineer_ops || data.engineer_ops === 0) {
-            engineerWrapper.style.display = 'none';
+            engineerWrapper.style.visibility = 'hidden';
         } else {
-            engineerWrapper.style.display = 'flex';
+            engineerWrapper.style.visibility = 'visible';
             document.getElementById('engineer-ops').textContent = formatNumber(data.engineer_ops);
         }
 
-        // ЛОГІКА ПРИХОВУВАННЯ / ВІДОБРАЖЕННЯ РОЗВІДУВАЛЬНИХ МІСІЙ
+        // ЛОГІКА ПРИХОВУВАННЯ / ВІДОБРАЖЕННЯ РОЗВІД МІСІЙ - ЗМІНЕНО НА visibility: hidden
         const reconWrapper = document.getElementById('recon-wrapper');
         const reconVal = (data.recon_ops !== undefined && data.recon_ops !== null) ? data.recon_ops : 13;
         if (!reconVal || reconVal === 0) {
-            reconWrapper.style.display = 'none';
+            reconWrapper.style.visibility = 'hidden';
         } else {
-            reconWrapper.style.display = 'flex';
+            reconWrapper.style.visibility = 'visible';
             document.getElementById('recon-ops').textContent = formatNumber(reconVal);
         }
 
