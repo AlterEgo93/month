@@ -122,7 +122,7 @@
     .evac1{ left:11.72%; top:70.60%; width:19.53%; text-align:left; }
     .evac2{ left:11.72%; top:83.91%; width:19.53%; text-align:left; }
     
-    /* РОЗТАШУВАННЯ БЛОКУ ОПЕРАЦІЙ (Зроблено flex-колоночним для керування порядком елементів) */
+    /* БЛОК ОПЕРАЦІЙ (Вертикальна колонка) */
     .ops{ 
         left:33.85%; 
         top:70.60%; 
@@ -282,14 +282,14 @@
                 <span class="mini-label">інженерна<br>операція</span>
             </div>
 
-            <!-- 4. Збиті БПЛА (стандартно order: 4, але зміститься вгору на 2, якщо немає інженерних) -->
+            <!-- Збиті БПЛА (order 4 або 2 залежно від наявності інженерних) -->
             <div class="flex" id="destroyed-wrapper" style="margin-bottom: 8px; order: 4;">
                 <span class="mini-number" id="destroyed-ops">94</span>
                 <span class="mini-label">збиті<br>БПЛА</span>
             </div>
 
-            <!-- 3. Розвід місії (завжди 3-ті, чітко навпроти ока завдяки відступу) -->
-            <div class="flex" id="recon-wrapper" style="margin-top: 15px; order: 3;">
+            <!-- 3. Розвід місії (завжди 3-ті, чітко навпроти ока завдяки порядку та відступу) -->
+            <div class="flex" id="recon-wrapper" style="order: 3;">
                 <span class="mini-number" id="recon-ops">13</span>
                 <span class="mini-label">розвід<br>місія</span>
             </div>
@@ -409,19 +409,16 @@
             document.getElementById('strike-ops').textContent = formatNumber(data.strike_ops);
         }
 
-        // ЛОГІКА ІНЖЕНЕРНИХ ОПЕРАЦІЙ ТА ЗБИТИХ БПЛА
         const engineerWrapper = document.getElementById('engineer-wrapper');
         const destroyedWrapper = document.getElementById('destroyed-wrapper');
 
         if (!data.engineer_ops || data.engineer_ops === 0) {
             engineerWrapper.style.visibility = 'hidden';
-            // Якщо інженерних немає — переносимо збиті БПЛА на їхнє 2-ге місце
-            destroyedWrapper.style.order = '2';
+            destroyedWrapper.style.order = '2'; // Збиті БПЛА стають на місце інженерних
         } else {
             engineerWrapper.style.visibility = 'visible';
             document.getElementById('engineer-ops').textContent = formatNumber(data.engineer_ops);
-            // Якщо інженерні є — повертаємо збиті БПЛА на їхнє 4-те місце
-            destroyedWrapper.style.order = '4';
+            destroyedWrapper.style.order = '4'; // Збиті БПЛА повертаються вниз
         }
 
         const destroyedVal = (data.destroyed_uav !== undefined && data.destroyed_uav !== null) ? data.destroyed_uav : 94;
