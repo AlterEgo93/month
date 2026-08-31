@@ -275,13 +275,13 @@
                 <span class="mini-label">ударна<br>місія</span>
             </div>
             
-            <!-- 2. Інженерна операція (order: 2 за замовчуванням) -->
+            <!-- 2. Інженерна операція (order: 2) -->
             <div class="flex" id="engineer-wrapper" style="margin-bottom: 8px; order: 2;">
                 <span class="mini-number" id="engineer-ops"></span>
                 <span class="mini-label">інженерна<br>операція</span>
             </div>
 
-            <!-- 4. Збиті БПЛА (order: 4 за замовчуванням, зміститься на 2, якщо немає інженерних) -->
+            <!-- 4. Збиті БПЛА (order: 4 за замовчуванням, стане на 2 якщо немає інженерних) -->
             <div class="flex" id="destroyed-wrapper" style="margin-bottom: 8px; order: 4;">
                 <span class="mini-number" id="destroyed-ops">94</span>
                 <span class="mini-label">збиті<br>БПЛА</span>
@@ -402,39 +402,39 @@
 
         const strikeWrapper = document.getElementById('strike-wrapper');
         if (!data.strike_ops || data.strike_ops === 0) {
-            strikeWrapper.style.visibility = 'hidden';
+            strikeWrapper.style.display = 'none';
         } else {
-            strikeWrapper.style.visibility = 'visible';
+            strikeWrapper.style.display = 'flex';
             document.getElementById('strike-ops').textContent = formatNumber(data.strike_ops);
         }
 
-        // Логіка інженерних місій та збитих БПЛА
+        // Логіка інженерних місій та збитих БПЛА (використовуємо display: none, щоб вони не займали місце)
         const engineerWrapper = document.getElementById('engineer-wrapper');
         const destroyedWrapper = document.getElementById('destroyed-wrapper');
 
         if (!data.engineer_ops || data.engineer_ops === 0) {
-            engineerWrapper.style.visibility = 'hidden';
-            destroyedWrapper.style.order = '2'; // Збиті БПЛА стають на 2 місце замість інженерних
+            engineerWrapper.style.display = 'none';
+            destroyedWrapper.style.order = '2'; // Збиті БПЛА займають 2-ге місце замість інженерних
         } else {
-            engineerWrapper.style.visibility = 'visible';
+            engineerWrapper.style.display = 'flex';
             document.getElementById('engineer-ops').textContent = formatNumber(data.engineer_ops);
-            destroyedWrapper.style.order = '4'; // Збиті БПЛА йдуть на 4 місце
+            destroyedWrapper.style.order = '4'; // Збиті БПЛА повертаються на 4-те місце
         }
 
         const destroyedVal = (data.destroyed_uav !== undefined && data.destroyed_uav !== null) ? data.destroyed_uav : 94;
         if (!destroyedVal || destroyedVal === 0) {
-            destroyedWrapper.style.visibility = 'hidden';
+            destroyedWrapper.style.display = 'none';
         } else {
-            destroyedWrapper.style.visibility = 'visible';
+            destroyedWrapper.style.display = 'flex';
             document.getElementById('destroyed-ops').textContent = formatNumber(destroyedVal);
         }
 
         const reconWrapper = document.getElementById('recon-wrapper');
         const reconVal = (data.recon_ops !== undefined && data.recon_ops !== null) ? data.recon_ops : 13;
         if (!reconVal || reconVal === 0) {
-            reconWrapper.style.visibility = 'hidden';
+            reconWrapper.style.display = 'none';
         } else {
-            reconWrapper.style.visibility = 'visible';
+            reconWrapper.style.display = 'flex';
             document.getElementById('recon-ops').textContent = formatNumber(reconVal);
         }
 
