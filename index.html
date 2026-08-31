@@ -271,7 +271,7 @@
                 <span class="mini-label">інженерна<br>операція</span>
             </div>
 
-            <div class="flex" id="destroyed-wrapper" style="margin-bottom: 10px;">
+            <div class="flex" id="destroyed-wrapper" style="margin-bottom: 35px;">
                 <span class="mini-number" id="destroyed-ops">94</span>
                 <span class="mini-label">збиті<br>БПЛА</span>
             </div>
@@ -396,6 +396,7 @@
             document.getElementById('strike-ops').textContent = formatNumber(data.strike_ops);
         }
 
+        // ЛОГІКА ДЛЯ ІНЖЕНЕРНИХ ОПЕРАЦІЙ: якщо немає, ховаємо через visibility: hidden, щоб збиті БПЛА стали на їхнє місце
         const engineerWrapper = document.getElementById('engineer-wrapper');
         if (!data.engineer_ops || data.engineer_ops === 0) {
             engineerWrapper.style.visibility = 'hidden';
