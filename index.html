@@ -121,7 +121,16 @@
     /* ЕВАКУАЦІЯ ТА ОПЕРАЦІЇ */
     .evac1{ left:11.72%; top:70.60%; width:19.53%; text-align:left; }
     .evac2{ left:11.72%; top:83.91%; width:19.53%; text-align:left; }
-    .ops{ left:33.85%; top:70.60%; width:14.32%; text-align:left; }
+    
+    /* РОЗТАШУВАННЯ БЛОКУ ОПЕРАЦІЙ (Зроблено flex-колоночним для керування порядком елементів) */
+    .ops{ 
+        left:33.85%; 
+        top:70.60%; 
+        width:14.32%; 
+        text-align:left; 
+        display: flex;
+        flex-direction: column;
+    }
 
     .mini-number{ font-size: 58px; font-weight:800; margin-right:2%; }
     .mini-label{ font-size: 20px; font-weight:700; }
@@ -261,22 +270,26 @@
         </div>
 
         <div class="text ops">
-            <div class="flex" id="strike-wrapper" style="margin-bottom: 10px;">
+            <!-- 1. Ударні місії -->
+            <div class="flex" id="strike-wrapper" style="margin-bottom: 8px; order: 1;">
                 <span class="mini-number" id="strike-ops"></span>
                 <span class="mini-label">ударна<br>місія</span>
             </div>
             
-            <div class="flex" id="engineer-wrapper" style="margin-bottom: 10px;">
+            <!-- 2. Інженерні операції -->
+            <div class="flex" id="engineer-wrapper" style="margin-bottom: 8px; order: 2;">
                 <span class="mini-number" id="engineer-ops"></span>
                 <span class="mini-label">інженерна<br>операція</span>
             </div>
 
-            <div class="flex" id="destroyed-wrapper" style="margin-bottom: 35px;">
+            <!-- 4. Збиті БПЛА (стандартно order: 4, але зміститься вгору на 2, якщо немає інженерних) -->
+            <div class="flex" id="destroyed-wrapper" style="margin-bottom: 8px; order: 4;">
                 <span class="mini-number" id="destroyed-ops">94</span>
                 <span class="mini-label">збиті<br>БПЛА</span>
             </div>
 
-            <div class="flex" id="recon-wrapper">
+            <!-- 3. Розвід місії (завжди 3-ті, чітко навпроти ока завдяки відступу) -->
+            <div class="flex" id="recon-wrapper" style="margin-top: 15px; order: 3;">
                 <span class="mini-number" id="recon-ops">13</span>
                 <span class="mini-label">розвід<br>місія</span>
             </div>
@@ -396,16 +409,21 @@
             document.getElementById('strike-ops').textContent = formatNumber(data.strike_ops);
         }
 
-        // ЛОГІКА ДЛЯ ІНЖЕНЕРНИХ ОПЕРАЦІЙ: якщо немає, ховаємо через visibility: hidden, щоб збиті БПЛА стали на їхнє місце
+        // ЛОГІКА ІНЖЕНЕРНИХ ОПЕРАЦІЙ ТА ЗБИТИХ БПЛА
         const engineerWrapper = document.getElementById('engineer-wrapper');
+        const destroyedWrapper = document.getElementById('destroyed-wrapper');
+
         if (!data.engineer_ops || data.engineer_ops === 0) {
             engineerWrapper.style.visibility = 'hidden';
+            // Якщо інженерних немає — переносимо збиті БПЛА на їхнє 2-ге місце
+            destroyedWrapper.style.order = '2';
         } else {
             engineerWrapper.style.visibility = 'visible';
             document.getElementById('engineer-ops').textContent = formatNumber(data.engineer_ops);
+            // Якщо інженерні є — повертаємо збиті БПЛА на їхнє 4-те місце
+            destroyedWrapper.style.order = '4';
         }
 
-        const destroyedWrapper = document.getElementById('destroyed-wrapper');
         const destroyedVal = (data.destroyed_uav !== undefined && data.destroyed_uav !== null) ? data.destroyed_uav : 94;
         if (!destroyedVal || destroyedVal === 0) {
             destroyedWrapper.style.visibility = 'hidden';
