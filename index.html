@@ -84,27 +84,27 @@
     /* ЗАГОЛОВОК */
     .title{ font-size: 40px; font-weight:800; width:81.38%; left:3.58%; top:3.70%; text-align:left; }
 
-    /* ГОЛОВНІ БЛОКИ (Чітко по центру кіл) */
+    /* ГОЛОВНІ БЛОКИ (Точкове зміщення для ідеального попадання в кола) */
     .big-number{ font-size: 88px; font-weight:800; }
     .big-label{ font-size: 28px; font-weight:700; }
     .small-label{ font-size: 14px; font-weight:500; line-height:1.25; }
 
     .missions{ 
-        left: 21.35%; 
+        left: 20.90%; /* Зсунуто трохи лівіше */
         top: 33.56%; 
         width: 18.22%; 
         transform: translateX(-50%); 
     }
 
     .distance{ 
-        left: 50.00%; 
+        left: 50.50%; /* Зсунуто трохи правіше */
         top: 33.56%; 
         width: 19.53%; 
         transform: translateX(-50%); 
     }
 
     .cargo{ 
-        left: 79.17%; 
+        left: 79.67%; /* Зсунуто трохи правіше */
         top: 33.56%; 
         width: 21%; 
         transform: translateX(-50%); 
@@ -118,9 +118,9 @@
     /* FLEX */
     .flex{ display:flex; align-items:center; }
 
-    /* ЕВАКУАЦІЯ ТА ОПЕРАЦІЇ (Повернено вліво на зручні позиції) */
-    .evac1{ left:11.07%; top:70.60%; width:19.53%; text-align:left; }
-    .evac2{ left:11.07%; top:83.91%; width:19.53%; text-align:left; }
+    /* ЕВАКУАЦІЯ (Зсунуто на ~10 пікселів правіше) та ОПЕРАЦІЇ (без змін) */
+    .evac1{ left:11.72%; top:70.60%; width:19.53%; text-align:left; }
+    .evac2{ left:11.72%; top:83.91%; width:19.53%; text-align:left; }
     .ops{ left:33.85%; top:70.60%; width:14.32%; text-align:left; }
 
     .mini-number{ font-size: 58px; font-weight:800; margin-right:2%; }
@@ -174,10 +174,10 @@
         border-radius:999px; width:0%; transition:0.5s;
     }
 
-    /* ПОЗИЦІЇ РОТ (Зсунуто вправо, щоб прибрати накладання на шеврони) */
-    .unit1{ left:54.00%; top:70.60%; }
-    .unit2{ left:71.00%; top:70.60%; }
-    .unit3{ left:88.00%; top:70.60%; }
+    /* ПОЗИЦІЇ РОТ (Зсунуто лівіше приблизно на 15-20 пікселів) */
+    .unit1{ left:52.73%; top:70.60%; }
+    .unit2{ left:69.50%; top:70.60%; }
+    .unit3{ left:86.30%; top:70.60%; }
 
     /* КНОПКА ЗБЕРЕЖЕННЯ */
     #saveBtn{
