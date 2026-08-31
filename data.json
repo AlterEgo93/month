@@ -1,6 +1,6 @@
 {
   "total_missions": 410,
-  "total_distance": 6909,
+  "total_distance": 6942,
   "total_weight": 47912,
   "evac_people": 11,
   "evac_300": 6,
@@ -15,7 +15,7 @@
   "stalker_evac_200": 0,
   "stalker_evac_nrk": 2,
   "black_missions": 121,
-  "black_distance": 2069,
+  "black_distance": 2102,
   "black_weight": 17224,
   "black_evac_300": 6,
   "black_evac_200": 5,
@@ -25,5 +25,6 @@
   "bears_weight": 17032,
   "bears_evac_300": 0,
   "bears_evac_200": 0,
-  "bears_evac_nrk": 3
+  "bears_evac_nrk": 3,
+  "surv_ops": ""
 }
