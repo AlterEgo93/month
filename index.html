@@ -283,13 +283,13 @@
 
             <!-- 4. Збиті БПЛА (order: 4 за замовчуванням, стане на 2 якщо немає інженерних) -->
             <div class="flex" id="destroyed-wrapper" style="margin-bottom: 8px; order: 4;">
-                <span class="mini-number" id="destroyed-ops">94</span>
+                <span class="mini-number" id="destroyed-ops"></span>
                 <span class="mini-label">збиті<br>БПЛА</span>
             </div>
 
             <!-- 3. Розвід місія (order: 3, злегка опущена нижче навпроти ока) -->
             <div class="flex" id="recon-wrapper" style="order: 3; margin-top: 6px;">
-                <span class="mini-number" id="recon-ops">13</span>
+                <span class="mini-number" id="recon-ops"></span>
                 <span class="mini-label">розвід<br>місія</span>
             </div>
         </div>
@@ -420,7 +420,7 @@
             destroyedWrapper.style.order = '4'; 
         }
 
-        const destroyedVal = (data.destroyed_uav !== undefined && data.destroyed_uav !== null) ? data.destroyed_uav : 94;
+        const destroyedVal = (data.destroyed_uav !== undefined && data.destroyed_uav !== null) ? data.destroyed_uav : 93;
         if (!destroyedVal || destroyedVal === 0) {
             destroyedWrapper.style.display = 'none';
         } else {
@@ -429,7 +429,7 @@
         }
 
         const reconWrapper = document.getElementById('recon-wrapper');
-        const reconVal = (data.recon_ops !== undefined && data.recon_ops !== null) ? data.recon_ops : 13;
+        const reconVal = (data.recon_ops !== undefined && data.recon_ops !== null) ? data.recon_ops : 12;
         if (!reconVal || reconVal === 0) {
             reconWrapper.style.display = 'none';
         } else {
