@@ -26,5 +26,6 @@
   "bears_evac_300": 0,
   "bears_evac_200": 0,
   "bears_evac_nrk": 3,
-  "surv_ops": ""
+  "recon_ops": 13,
+  "destroyed_uav": 94
 }
