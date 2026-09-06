@@ -1,6 +1,6 @@
 {
   "total_missions": 67,
-  "total_distance": 1116,
+  "total_distance": 1160,
   "total_weight": 9875,
   "evac_people": 2,
   "evac_300": 1,
@@ -9,7 +9,7 @@
   "strike_ops": 0,
   "engineer_ops": 0,
   "stalker_missions": 17,
-  "stalker_distance": 418,
+  "stalker_distance": 462,
   "stalker_weight": 1885,
   "stalker_evac_300": 0,
   "stalker_evac_200": 0,
