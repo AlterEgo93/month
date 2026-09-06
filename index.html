@@ -399,13 +399,15 @@
         }
 
         const strikeWrapper = document.getElementById('strike-wrapper');
+        
+        // Обов'язково записуємо число (навіть 0), щоб невидима цифра 
+        // розтягувала блок на правильну висоту шрифту 58px
+        document.getElementById('strike-ops').textContent = formatNumber(data.strike_ops || 0);
+
         if (!data.strike_ops || data.strike_ops === 0) {
-            // Робимо блок невидимим, але залишаємо його місце
             strikeWrapper.style.visibility = 'hidden'; 
         } else {
-            // Повертаємо видимість
             strikeWrapper.style.visibility = 'visible'; 
-            document.getElementById('strike-ops').textContent = formatNumber(data.strike_ops);
         }
 
         const engineerWrapper = document.getElementById('engineer-wrapper');
