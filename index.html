@@ -271,25 +271,21 @@
         </div>
 
         <div class="text ops">
-            <!-- 1. Ударна місія -->
             <div class="flex" id="strike-wrapper" style="margin-bottom: 8px; order: 1;">
                 <span class="mini-number" id="strike-ops"></span>
                 <span class="mini-label">ударна<br>місія</span>
             </div>
             
-            <!-- 2. Інженерна операція (order: 2) -->
             <div class="flex" id="engineer-wrapper" style="margin-bottom: 8px; order: 2;">
                 <span class="mini-number" id="engineer-ops"></span>
                 <span class="mini-label">інженерна<br>операція</span>
             </div>
 
-            <!-- 4. Збиті БПЛА (order: 4 за замовчуванням, стане на 2 якщо немає інженерних) -->
             <div class="flex" id="destroyed-wrapper" style="margin-bottom: 8px; order: 4;">
                 <span class="mini-number" id="destroyed-ops"></span>
                 <span class="mini-label">збиті<br>БПЛА</span>
             </div>
 
-            <!-- 3. Розвід місія (order: 3, злегка опущена нижче навпроти ока) -->
             <div class="flex" id="recon-wrapper" style="order: 3; margin-top: 6px;">
                 <span class="mini-number" id="recon-ops"></span>
                 <span class="mini-label">розвід<br>місія</span>
@@ -404,9 +400,11 @@
 
         const strikeWrapper = document.getElementById('strike-wrapper');
         if (!data.strike_ops || data.strike_ops === 0) {
-            strikeWrapper.style.display = 'none';
+            // Робимо блок невидимим, але залишаємо його місце
+            strikeWrapper.style.visibility = 'hidden'; 
         } else {
-            strikeWrapper.style.display = 'flex';
+            // Повертаємо видимість
+            strikeWrapper.style.visibility = 'visible'; 
             document.getElementById('strike-ops').textContent = formatNumber(data.strike_ops);
         }
 
