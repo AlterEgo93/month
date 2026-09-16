@@ -1,5 +1,5 @@
 {
-  "total_missions": 161,
+  "total_missions": 162,
   "total_distance": 3495,
   "total_weight": 22192,
   "evac_people": 11,
@@ -20,7 +20,7 @@
   "black_evac_300": 6,
   "black_evac_200": 3,
   "black_evac_nrk": 6,
-  "bears_missions": 51,
+  "bears_missions": 52,
   "bears_distance": 960,
   "bears_weight": 4737,
   "bears_evac_300": 0,
