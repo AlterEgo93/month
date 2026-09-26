@@ -35,8 +35,8 @@
   "evac_300_stats": 97,
   "evac_200_stats": 63,
   "evac_nrk_stats": 185,
-  "strike_ops_stats": "",
-  "engineer_ops_stats": "",
-  "recon_ops_stats": "",
-  "destroyed_uav_stats": ""
+  "strike_ops_stats": 61,
+  "engineer_ops_stats": 19,
+  "recon_ops_stats": 40,
+  "destroyed_uav_stats": 333
 }
