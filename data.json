@@ -27,7 +27,7 @@
   "bears_evac_200": 0,
   "bears_evac_nrk": 1,
   "recon_ops": 2,
-  "destroyed_uav": 29,
+  "destroyed_uav": 38,
   "total_missions_stats": 4358,
   "total_distance_stats": 57787,
   "total_weight_stats": 398924,
@@ -38,5 +38,5 @@
   "strike_ops_stats": 61,
   "engineer_ops_stats": 19,
   "recon_ops_stats": 43,
-  "destroyed_uav_stats": 385
+  "destroyed_uav_stats": 394
 }
