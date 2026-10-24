@@ -1,6 +1,6 @@
 {
   "total_missions": 298,
-  "total_distance": 5598,
+  "total_distance": 5626,
   "total_weight": 60097,
   "evac_people": 15,
   "evac_300": 13,
@@ -29,7 +29,7 @@
   "recon_ops": 10,
   "destroyed_uav": 99,
   "total_missions_stats": 4632,
-  "total_distance_stats": 62004,
+  "total_distance_stats": 62032,
   "total_weight_stats": 445858,
   "evac_people_stats": 175,
   "evac_300_stats": 110,
