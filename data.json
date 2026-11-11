@@ -20,14 +20,14 @@
   "black_evac_300": 1,
   "black_evac_200": 0,
   "black_evac_nrk": 2,
-  "bears_missions": 37,
+  "bears_missions": 38,
   "bears_distance": 809,
-  "bears_weight": 5040,
+  "bears_weight": 5490,
   "bears_evac_300": 0,
   "bears_evac_200": 1,
   "bears_evac_nrk": 0,
   "recon_ops": 1,
-  "destroyed_uav": 31,
+  "destroyed_uav": 34,
   "total_missions_stats": 4879,
   "total_distance_stats": 66253,
   "total_weight_stats": 494641,
@@ -38,5 +38,5 @@
   "strike_ops_stats": 61,
   "engineer_ops_stats": 19,
   "recon_ops_stats": 55,
-  "destroyed_uav_stats": 491
+  "destroyed_uav_stats": 494
 }
