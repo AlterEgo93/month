@@ -1,5 +1,5 @@
 {
-  "total_missions": 179,
+  "total_missions": 180,
   "total_distance": 4147,
   "total_weight": 31437,
   "evac_people": 3,
@@ -28,7 +28,7 @@
   "bears_evac_nrk": 2,
   "recon_ops": 2,
   "destroyed_uav": 48,
-  "total_missions_stats": 4962,
+  "total_missions_stats": 4963,
   "total_distance_stats": 67871,
   "total_weight_stats": 504407,
   "evac_people_stats": 183,
