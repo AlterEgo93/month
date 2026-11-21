@@ -8,9 +8,9 @@
   "evac_nrk": 7,
   "strike_ops": 1,
   "engineer_ops": 0,
-  "stalker_missions": 71,
-  "stalker_distance": 1688,
-  "stalker_weight": 11246,
+  "stalker_missions": 73,
+  "stalker_distance": 1692,
+  "stalker_weight": 11566,
   "stalker_evac_300": 0,
   "stalker_evac_200": 0,
   "stalker_evac_nrk": 0,
@@ -27,7 +27,7 @@
   "bears_evac_200": 1,
   "bears_evac_nrk": 2,
   "recon_ops": 2,
-  "destroyed_uav": 52,
+  "destroyed_uav": 53,
   "total_missions_stats": 5005,
   "total_distance_stats": 68531,
   "total_weight_stats": 510183,
@@ -38,5 +38,5 @@
   "strike_ops_stats": 62,
   "engineer_ops_stats": 19,
   "recon_ops_stats": 56,
-  "destroyed_uav_stats": 512
+  "destroyed_uav_stats": 513
 }
